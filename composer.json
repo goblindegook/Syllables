@@ -1,0 +1,27 @@
+{
+    "name": "goblindegook/syllables",
+    "description": "Syllables are helper classes and functions for WordPress development.",
+    "keywords": ["wordpress"],
+    "homepage": "https://github.com/goblindegook/Syllables",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Luís Rodrigues",
+            "email": "hello@goblindegook.net",
+            "homepage": "http://twitter.com/goblindegook"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/goblindegook/Syllables/issues",
+        "source": "https://github.com/goblindegook/Syllables"
+    },
+    "autoload": {
+        "psr-4": {"Syllables\\": "src/"},
+        "classmap": [],
+        "files": []
+    },
+    "require": {
+        "php": ">=5.3.0",
+        "monolog/monolog": "1.11.*"
+    }
+}
