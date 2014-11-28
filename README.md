@@ -2,6 +2,8 @@
 
 Syllables are helper classes and functions for WordPress development.
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/goblindegook/Syllables/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/goblindegook/Syllables/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/goblindegook/Syllables/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/goblindegook/Syllables/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/goblindegook/Syllables/badges/build.png?b=master)](https://scrutinizer-ci.com/g/goblindegook/Syllables/build-status/master)
+
 ## Installation
 
 ### In your projects using Composer
