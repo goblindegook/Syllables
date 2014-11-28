@@ -1,5 +1,5 @@
 <?php
-namespace \Syllables\Template;
+namespace Syllables\Template;
 
 /**
  * Abstract class that implements a custom template loader in a plugin.
@@ -17,8 +17,8 @@ abstract class Loader {
 	 *
 	 * @param string $base_path  Base path for the template files.
 	 */
-	function __construct( $base_path = '' ) {
-		$this->base_path  = strlen( $base_path ) ? trailingslashit( $base_path ) : plugin_dir_path( __FILE__ );
+	function __construct( $base_path ) {
+		$this->base_path = trailingslashit( $base_path );
 
 		add_filter( 'template_include', array( $this, 'filter' ) );
 	}
