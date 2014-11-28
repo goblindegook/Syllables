@@ -2,7 +2,7 @@
 
 ## Taxonomy Templates
 
-Lets you to override a theme template for a taxonomy by attempting to load one of the following files in your specified directory:
+Lets you override a theme template for a taxonomy by attempting to load one of the following files in the specified directory:
 
 * `taxonomy-{{taxonomy}}-{{term}}.php`
 * `taxonomy-{{taxonomy}}.php`
@@ -18,7 +18,7 @@ new \Syllables\Template\Loader\Taxonomy( $base_path, $taxonomies );
 
 ## Post Type Archive Templates
 
-Lets you to override a theme template for a post type archive by attempting to load the following file in your specified directory:
+Lets you override a theme template for a post type archive by attempting to load the following file in the specified directory:
 
 * `archive-{{post type}}.php`
 
@@ -33,7 +33,7 @@ new \Syllables\Template\Loader\Post_Type_Archive( $base_path, $post_types );
 
 ## Single Post Templates
 
-Lets you to override a single post template for a post type by attempting to load the following file in your specified directory:
+Lets you override a theme template for a single post by attempting to load the following file in the specified directory:
 
 * `single-{{post type}}.php`
 
