@@ -19,8 +19,18 @@ abstract class Loader {
 	 */
 	function __construct( $base_path ) {
 		$this->base_path = trailingslashit( $base_path );
+	}
 
-		add_filter( 'template_include', array( $this, 'filter' ) );
+	/**
+	 * Schedules the template loader for execution.
+	 *
+	 * @param  integer $priority Execution priority, lower means earlier. Default is 10.
+	 *
+	 * @uses `remove_filter`
+	 */
+	public function run( $priority = 10 ) {
+		remove_filter( 'template_include', array( $this, 'filter' ) );
+		add_filter( 'template_include', array( $this, 'filter' ), $priority );
 	}
 
 	/**

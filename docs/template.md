@@ -13,7 +13,8 @@ Lets you override a theme template for a taxonomy by attempting to load one of t
 $base_path  = plugin_dir_path( __FILE__ ) . 'templates';
 $taxonomies = array( '__taxonomy__' );
 
-new \Syllables\Template\Loader\Taxonomy( $base_path, $taxonomies );
+$loader = new \Syllables\Template\Loader\Taxonomy( $base_path, $taxonomies );
+$loader->run();
 ```
 
 ## Post Type Archive Templates
@@ -28,7 +29,8 @@ Lets you override a theme template for a post type archive by attempting to load
 $base_path  = plugin_dir_path( __FILE__ ) . 'templates';
 $post_types = array( '__post-type__' );
 
-new \Syllables\Template\Loader\Post_Type_Archive( $base_path, $post_types );
+$loader = new \Syllables\Template\Loader\Post_Type_Archive( $base_path, $post_types );
+$loader->run();
 ```
 
 ## Single Post Templates
@@ -43,5 +45,6 @@ Lets you override a theme template for a single post by attempting to load the f
 $base_path  = plugin_dir_path( __FILE__ ) . 'templates';
 $post_types = array( '__post-type__' );
 
-new \Syllables\Template\Loader\Single( $base_path, $post_types );
+$loader = new \Syllables\Template\Loader\Single( $base_path, $post_types );
+$loader->run();
 ```
