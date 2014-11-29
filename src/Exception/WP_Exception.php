@@ -56,7 +56,7 @@ class WP_Exception extends \Exception {
 			$message = $previous->get_error_message( $code );
 		}
 
-		parent::__construct( $message );
+		parent::__construct( $message, null, $is_wp_error ? null : $previous );
 
 		$this->code     = $code;
 		$this->wp_error = $is_wp_error ? $previous : new \WP_Error( $code, $message, $this );
