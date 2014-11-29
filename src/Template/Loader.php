@@ -17,7 +17,7 @@ abstract class Loader {
 	 *
 	 * @param string $base_path  Base path for the template files.
 	 */
-	function __construct( $base_path ) {
+	public function __construct( $base_path ) {
 		$this->base_path = trailingslashit( $base_path );
 	}
 

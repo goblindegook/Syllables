@@ -24,7 +24,7 @@ class Taxonomy extends \Syllables\Template\Loader {
 	 * @param array  $taxonomies Taxonomies whose templates should be overriden.
 	 * @param string $base_path  Base path for the template files.
 	 */
-	function __construct( $base_path, $taxonomies ) {
+	public function __construct( $base_path, $taxonomies ) {
 		parent::__construct( $base_path );
 		$this->taxonomies = (array) $taxonomies;
 	}

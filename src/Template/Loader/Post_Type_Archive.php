@@ -24,7 +24,7 @@ class Post_Type_Archive extends \Syllables\Template\Loader {
 	 * @param array  $post_types Post types whose templates should be overriden.
 	 * @param string $base_path  Base path for the template files.
 	 */
-	function __construct( $base_path, $post_types ) {
+	public function __construct( $base_path, $post_types ) {
 		parent::__construct( $base_path );
 		$this->post_types = (array) $post_types;
 	}
