@@ -3,7 +3,7 @@
 namespace Syllables\Tests\Template\Loader;
 
 /**
- * @coversDefaultClass \Syllables\Tests\Template\Loader\Taxonomy
+ * @coversDefaultClass \Syllables\Tests\Template\Loader\Taxonomy<extended>
  */
 class Test_Taxonomy extends \WP_UnitTestCase {
 
@@ -22,14 +22,14 @@ class Test_Taxonomy extends \WP_UnitTestCase {
 	}
 
 	/**
-	 * @covers ::run().
+	 * @covers ::run
 	 */
 	public function test_run() {
 		$this->markTestIncomplete();
 	}
 
 	/**
-	 * @covers ::filter().
+	 * @covers ::filter
 	 */
 	public function test_filter() {
 		$this->markTestIncomplete();
