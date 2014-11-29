@@ -1,8 +1,14 @@
 <?php
+/**
+ * @since 0.1.0
+ */
+
 namespace Syllables\Template\Loader;
 
 /**
  * Class that implements a single custom template loader in a plugin.
+ *
+ * @since 0.1.0
  */
 class Single extends Post_Type_Archive {
 
@@ -23,7 +29,8 @@ class Single extends Post_Type_Archive {
 	 * @return boolean Whether a custom template should be loaded.
 	 */
 	protected function _should_load_template() {
-		return is_single() && ! empty( $this->post_type )
+		return is_single()
+			&& ! empty( $this->post_type )
 			&& in_array( $this->post_type->name, $this->post_types );
 	}
 

@@ -1,8 +1,14 @@
 <?php
+/**
+ * @since 0.1.0
+ */
+
 namespace Syllables\Template\Loader;
 
 /**
  * Class that implements a single custom template loader in a plugin.
+ *
+ * @since 0.1.0
  */
 class Taxonomy extends \Syllables\Template\Loader {
 
@@ -42,7 +48,9 @@ class Taxonomy extends \Syllables\Template\Loader {
 	 * @return boolean Whether a custom template should be loaded.
 	 */
 	protected function _should_load_template() {
-		return is_tax() && ! empty( $this->term->slug ) && in_array( $this->term->taxonomy, $this->taxonomies );
+		return is_tax()
+			&& ! empty( $this->term->slug )
+			&& in_array( $this->term->taxonomy, $this->taxonomies );
 	}
 
 	/**

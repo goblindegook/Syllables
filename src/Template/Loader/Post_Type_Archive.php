@@ -1,8 +1,14 @@
 <?php
+/**
+ * @since 0.1.0
+ */
+
 namespace Syllables\Template\Loader;
 
 /**
  * Class that implements a single custom template loader in a plugin.
+ *
+ * @since 0.1.0
  */
 class Post_Type_Archive extends \Syllables\Template\Loader {
 
@@ -42,7 +48,8 @@ class Post_Type_Archive extends \Syllables\Template\Loader {
 	 * @return boolean Whether a custom template should be loaded.
 	 */
 	protected function _should_load_template() {
-		return is_post_type_archive() && ! empty( $this->post_type )
+		return is_post_type_archive()
+			&& ! empty( $this->post_type )
 			&& in_array( $this->post_type->name, $this->post_types )
 			&& $this->post_type->has_archive;
 	}

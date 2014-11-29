@@ -1,8 +1,14 @@
 <?php
+/**
+ * @since 0.1.0
+ */
+
 namespace Syllables\Template;
 
 /**
  * Abstract class that implements a custom template loader in a plugin.
+ *
+ * @since 0.1.0
  */
 abstract class Loader {
 

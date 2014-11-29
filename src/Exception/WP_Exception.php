@@ -4,13 +4,15 @@
  * they were valid results. This extends the default `\Exception` class to allow
  * converting exceptions to and from `\WP_Error` objects.
  *
- * @see http://codex.wordpress.org/Class_Reference/WP_Error
+ * @since 0.1.0
  */
 
 namespace Syllables\Exception;
 
 /**
  * Allows throwing a WP_Error as an an exception.
+ *
+ * @since 0.1.0
  */
 class WP_Exception extends \Exception {
 
@@ -45,25 +47,27 @@ class WP_Exception extends \Exception {
 	 *
 	 * @param string $message  Exception message (defaults to empty).
 	 * @param string $code     Exception code (defaults to empty).
-	 * @param mixed  $previous Previous exception or instance of `\WP_Error` to
-	 *                         convert (defaults to none).
+	 * @param mixed  $previous Previous exception or instance of `\WP_Error`
+	 *                         (defaults to none).
 	 */
 	public function __construct( $message = '', $code = '', $previous = null ) {
+		$exception   = $previous;
 		$is_wp_error = $previous instanceof \WP_Error;
 
 		if ( $is_wp_error ) {
-			$code    = $previous->get_error_code();
-			$message = $previous->get_error_message( $code );
+			$code      = $previous->get_error_code();
+			$message   = $previous->get_error_message( $code );
+			$exception = null;
 		}
 
-		parent::__construct( $message, null, $is_wp_error ? null : $previous );
+		parent::__construct( $message, null, $exception );
 
 		$this->code     = $code;
 		$this->wp_error = $is_wp_error ? $previous : new \WP_Error( $code, $message, $this );
 	}
 
 	/**
-	 * Obtain the exception as a WP_Error object.
+	 * Obtain the exception's `\WP_Error` object.
 	 *
 	 * @return \WP_Error WordPress error.
 	 */

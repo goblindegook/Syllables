@@ -1,6 +1,6 @@
 <?php
 /**
- * Implement fragment caching.
+ * Implements fragment caching.
  *
  * @since 0.1.0
  */
@@ -44,15 +44,15 @@ class Fragment {
 
 	/**
 	 * Cached data's time-to-live, in seconds.
-	 * @var int
+	 * @var integer
 	 */
 	protected $ttl;
 
 	/**
 	 * Fragment cache constructor.
 	 *
-	 * @param string $key Key used to reference cached data.
-	 * @param int    $ttl Time-to-live (in seconds).
+	 * @param string  $key Key used to reference cached data.
+	 * @param integer $ttl Time-to-live (in seconds).
 	 */
 	public function __construct( $key, $ttl ) {
 		$this->key = $key;
@@ -60,9 +60,8 @@ class Fragment {
 	}
 
 	/**
-	 * Outputs cached content, if available.
-	 *
-	 * Otherwise, it begins capturing output for caching.
+	 * Outputs cached content, if available, otherwise begins capturing output
+	 * for caching.
 	 *
 	 * @return boolean Whether content was found in the cache.
 	 */
