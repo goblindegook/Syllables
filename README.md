@@ -18,7 +18,7 @@ TODO
 
 TODO
 
-## Credits
+## Acknowledgements
 
 * `Syllables\Cache\Fragment` is adapted from [Mark Jaquith's fragment caching class](http://markjaquith.wordpress.com/2013/04/26/fragment-caching-in-wordpress/).
 

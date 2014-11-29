@@ -3,8 +3,6 @@
  * Implement fragment caching.
  *
  * @since 0.1.0
- *
- * @package Syllables\Cache
  */
 
 namespace Syllables\Cache;
@@ -16,7 +14,7 @@ namespace Syllables\Cache;
  *
  * Usage:
  *
- * ```
+ * ```php
  * $fragment = new \Syllables\Cache\Fragment( 'unique-key', 3600 );
  *
  * if ( ! $fragment->output() ) {

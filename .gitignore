@@ -1,6 +1,9 @@
 # composer
 /vendor/*
 
+# phpdocumentor
+/docs/*
+
 # jetbrains
 .idea/
 .idea_modules/

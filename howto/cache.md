@@ -1,4 +1,4 @@
-# Syllables: Caching
+# Syllables: Caching HOWTO
 
 ## Fragment caching
 

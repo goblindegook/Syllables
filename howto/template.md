@@ -1,4 +1,4 @@
-# Syllables: Templates
+# Syllables: Templates HOWTO
 
 ## Taxonomy Templates
 
