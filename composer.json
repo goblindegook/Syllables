@@ -24,7 +24,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Syllables\\Tests": "tests/"
+            "Syllables\\Tests\\": "tests/"
         },
         "classmap": [],
         "files": ["tests/bootstrap.php"]
