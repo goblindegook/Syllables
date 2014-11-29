@@ -1,11 +1,11 @@
 <?php
 
-namespace Syllables\Tests\Template\Loader;
+namespace Syllables\Tests\Cache;
 
 /**
- * @coversDefaultClass \Syllables\Tests\Template\Loader\Single<extended>
+ * @coversDefaultClass \Syllables\Tests\Cache\Fragment
  */
-class Test_Single extends \WP_UnitTestCase {
+class Test_Fragment extends \WP_UnitTestCase {
 
 	/**
 	 * Setup a test method.
@@ -22,16 +22,16 @@ class Test_Single extends \WP_UnitTestCase {
 	}
 
 	/**
-	 * @covers ::run
+	 * @covers ::output
 	 */
-	public function test_ready() {
+	public function output() {
 		$this->markTestIncomplete();
 	}
 
 	/**
-	 * @covers ::filter
+	 * @covers ::store
 	 */
-	public function test_filter() {
+	public function store() {
 		$this->markTestIncomplete();
 	}
 

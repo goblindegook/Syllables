@@ -24,7 +24,7 @@ class Test_Taxonomy extends \WP_UnitTestCase {
 	/**
 	 * @covers ::run
 	 */
-	public function test_run() {
+	public function test_ready() {
 		$this->markTestIncomplete();
 	}
 

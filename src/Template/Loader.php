@@ -34,7 +34,7 @@ abstract class Loader {
 	 *
 	 * @uses `remove_filter`
 	 */
-	public function run( $priority = 10 ) {
+	public function ready( $priority = 10 ) {
 		remove_filter( 'template_include', array( $this, 'filter' ) );
 		add_filter( 'template_include', array( $this, 'filter' ), $priority );
 	}
