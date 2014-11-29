@@ -24,14 +24,14 @@ class Test_Fragment extends \WP_UnitTestCase {
 	/**
 	 * @covers ::output
 	 */
-	public function output() {
+	public function test_output() {
 		$this->markTestIncomplete();
 	}
 
 	/**
 	 * @covers ::store
 	 */
-	public function store() {
+	public function test_store() {
 		$this->markTestIncomplete();
 	}
 

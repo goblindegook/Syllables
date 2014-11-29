@@ -24,7 +24,7 @@ class Test_WP_Exception extends \WP_UnitTestCase {
 	/**
 	 * @covers ::get_wp_error
 	 */
-	public function get_wp_error() {
+	public function test_get_wp_error() {
 		$this->markTestIncomplete();
 	}
 
