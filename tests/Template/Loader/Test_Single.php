@@ -5,7 +5,7 @@ namespace Syllables\Tests\Template\Loader;
 /**
  * @coversDefaultClass \Syllables\Tests\Template\Loader\Single
  */
-class Test_Single extends WP_UnitTestCase {
+class Test_Single extends \WP_UnitTestCase {
 
 	/**
 	 * Setup a test method.

@@ -5,7 +5,7 @@ namespace Syllables\Tests\Template\Loader;
 /**
  * @coversDefaultClass \Syllables\Tests\Template\Loader\Taxonomy
  */
-class Test_Taxonomy extends WP_UnitTestCase {
+class Test_Taxonomy extends \WP_UnitTestCase {
 
 	/**
 	 * Setup a test method.
