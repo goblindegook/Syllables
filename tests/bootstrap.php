@@ -1,9 +1,7 @@
 <?php
 /**
- * @package \WPCASServerPlugin\Tests
+ * @package \Syllable\Tests
  */
-
-namespace Syllable\Tests;
 
 $_tests_dir = getenv( 'WP_TESTS_DIR' );
 
