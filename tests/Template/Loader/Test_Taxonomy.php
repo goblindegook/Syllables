@@ -3,7 +3,7 @@
 namespace Syllables\Tests\Template\Loader;
 
 /**
- * @coversDefaultClass \Syllables\Tests\Template\Loader\Taxonomy<extended>
+ * @coversDefaultClass \Syllables\Template\Loader\Taxonomy<extended>
  */
 class Test_Taxonomy extends \WP_UnitTestCase {
 

@@ -3,7 +3,7 @@
 namespace Syllables\Tests\Template\Loader;
 
 /**
- * @coversDefaultClass \Syllables\Tests\Template\Loader\Single<extended>
+ * @coversDefaultClass \Syllables\Template\Loader\Single<extended>
  */
 class Test_Single extends \WP_UnitTestCase {
 

@@ -3,7 +3,7 @@
 namespace Syllables\Tests\Cache;
 
 /**
- * @coversDefaultClass \Syllables\Tests\Cache\Fragment
+ * @coversDefaultClass \Syllables\Cache\Fragment
  */
 class Test_Fragment extends \WP_UnitTestCase {
 

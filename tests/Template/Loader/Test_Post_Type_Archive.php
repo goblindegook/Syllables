@@ -3,7 +3,7 @@
 namespace Syllables\Tests\Template\Loader;
 
 /**
- * @coversDefaultClass \Syllables\Tests\Template\Loader\Post_Type_Archive<extended>
+ * @coversDefaultClass \Syllables\Template\Loader\Post_Type_Archive<extended>
  */
 class Test_Post_Type_Archive extends \WP_UnitTestCase {
 

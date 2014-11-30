@@ -5,23 +5,9 @@ namespace Syllables\Tests\Exception;
 use Syllables\Exception\WP_Exception;
 
 /**
- * @coversDefaultClass \Syllables\Tests\Exception\WP_Exception
+ * @coversDefaultClass \Syllables\Exception\WP_Exception
  */
 class Test_WP_Exception extends \WP_UnitTestCase {
-
-	/**
-	 * Setup a test method.
-	 */
-	public function setUp() {
-		parent::setUp();
-	}
-
-	/**
-	 * Clean up after a test method.
-	 */
-	public function tearDown() {
-		parent::tearDown();
-	}
 
 	/**
 	 * Checks that `\WP_Error` objects are correctly passed inside `WP_Exception`.
