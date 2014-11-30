@@ -4,6 +4,9 @@ vendor/*
 # npm
 node_modules/*
 
+# phpunit
+coverage.clover
+
 # phpdocumentor
 /docs/*
 
