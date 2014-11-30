@@ -22,7 +22,7 @@ class Test_Post_Type_Archive extends \WP_UnitTestCase {
 	}
 
 	/**
-	 * @covers ::run
+	 * @covers ::ready
 	 */
 	public function test_ready() {
 		$this->markTestIncomplete();

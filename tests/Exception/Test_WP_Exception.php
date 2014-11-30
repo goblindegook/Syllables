@@ -12,6 +12,7 @@ class Test_WP_Exception extends \WP_UnitTestCase {
 	/**
 	 * Checks that `\WP_Error` objects are correctly passed inside `WP_Exception`.
 	 *
+	 * @covers ::__construct
 	 * @covers ::get_wp_error
 	 */
 	public function test_get_wp_error_previous() {
@@ -49,6 +50,7 @@ class Test_WP_Exception extends \WP_UnitTestCase {
 	/**
 	 * Checks that new `\WP_Error` objects can be created from a `WP_Exception`.
 	 *
+	 * @covers ::__construct
 	 * @covers ::get_wp_error
 	 */
 	public function test_get_wp_error_new() {
