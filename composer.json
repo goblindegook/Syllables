@@ -34,7 +34,8 @@
         "monolog/monolog": "1.11.*"
     },
     "require-dev": {
-        "phpunit/phpunit": "*@stable"
+        "phpunit/phpunit": "*@stable",
+        "apigen/apigen": "4.0.0.*@dev"
     },
     "suggest": {}
 }

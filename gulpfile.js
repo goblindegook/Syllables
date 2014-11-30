@@ -5,9 +5,7 @@
 var gulp        = require('gulp'),
     del         = require('del'),
     gutil       = require('gulp-util'),
-    $           = require('gulp-load-plugins')(),
-    browserSync = require('browser-sync'),
-    reload      = browserSync.reload;
+    $           = require('gulp-load-plugins')();
 
 function _onError (error) {
   gutil.log(gutil.colors.red(error.message));
@@ -21,11 +19,9 @@ gulp.task('composer', function () {
 });
 
 /**
- * gulp install:phpunit
+ * gulp test
  */
-gulp.task('install:phpunit', function () {
-  return;
-});
+gulp.task('test', ['phpunit']);
 
 /**
  * gulp phpunit
@@ -36,9 +32,12 @@ gulp.task('phpunit', function () {
 });
 
 /**
- * gulp test
+ * gulp apigen
  */
-gulp.task('test', ['phpunit']);
+gulp.task('apigen', function () {
+  gulp.src('apigen.neon')
+    .pipe($.apigen());
+});
 
 /**
  * gulp watch
@@ -52,33 +51,6 @@ gulp.task('watch', function () {
 });
 
 /**
- * gulp watch:server
- */
-gulp.task('watch:server', function () {
-
-  browserSync({
-    notify: false,
-    server: {
-      baseDir: './',
-      directory: true,
-    },
-    host: 'localhost',
-    port: 3000,
-    logLevel: 'debug'
-  });
-
-  /**
-   * Rebuild on changed sources.
-   */
-
-  gulp.watch(['src/**/*.php', 'tests/**/*.php'],
-    ['test', reload]);
-
-  gulp.watch('composer.json',
-    ['composer', 'test', reload]);
-});
-
-/**
  * gulp clean
  */
 gulp.task('clean', function (cb) {
@@ -89,7 +61,7 @@ gulp.task('clean', function (cb) {
  * gulp rebuild
  */
 gulp.task('rebuild', ['clean'], function () {
-  gulp.start(['install:phpunit', 'build']);
+  gulp.start(['build']);
 });
 
 /**
