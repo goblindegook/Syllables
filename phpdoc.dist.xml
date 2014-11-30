@@ -2,10 +2,10 @@
 <phpdoc>
   <title>Syllables</title>
   <parser>
-    <target>docs</target>
+    <target>docs/phpdoc</target>
   </parser>
   <transformer>
-    <target>docs</target>
+    <target>docs/phpdoc</target>
   </transformer>
   <files>
     <directory>src</directory>

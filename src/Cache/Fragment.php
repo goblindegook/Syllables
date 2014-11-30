@@ -18,10 +18,10 @@ namespace Syllables\Cache;
  * $fragment = new \Syllables\Cache\Fragment( 'unique-key', 3600 );
  *
  * if ( ! $fragment->output() ) {
- *     // Your code goes here.
  *
- *     // IMPORTANT! DO NOT FORGET THIS:
- *     $fragment->store();
+ *     expensive_code_that_outputs_something();
+ *
+ *     $fragment->store(); // IMPORTANT! DO NOT FORGET THIS!
  * }
  * ```
  *
@@ -51,7 +51,7 @@ class Fragment {
 	/**
 	 * Fragment cache constructor.
 	 *
-	 * @param string  $key Key used to reference cached data.
+	 * @param string  $key Key used to uniquely reference cached data.
 	 * @param integer $ttl Time-to-live (in seconds).
 	 */
 	public function __construct( $key, $ttl ) {

@@ -1,16 +1,20 @@
 <?php
 /**
- * `WP_Error` sucks. Errors are meant to be thrown, not returned by methods like
- * they were valid results. This extends the default `\Exception` class to allow
- * converting exceptions to and from `\WP_Error` objects.
- *
  * @since 0.1.0
  */
 
 namespace Syllables\Exception;
 
 /**
- * Allows throwing a WP_Error as an an exception.
+ * Allows throwing a `WP_Error` object as an an exception.
+ *
+ * `WP_Error` sucks. Errors are meant to be thrown, not returned by methods like they
+ * were valid results. This extends the default `Exception` class to allow converting
+ * exceptions to and from `WP_Error` objects.
+ *
+ * Unfortunately, because a `WP_Error` object may contain multiple messages and error
+ * codes, only the first message for the first error code in the instance will be
+ * accessible through the exception's methods.
  *
  * @since 0.1.0
  */
@@ -35,20 +39,19 @@ class WP_Exception extends \Exception {
 	 * parameters or a `\WP_Error` instance in place of the previous exception.
 	 *
 	 * If a `\WP_Error` instance is given in this way, the `$message` and `$code`
-	 * parameters are ignored in favour of the message and codes provided by the
-	 * instance.
+	 * parameters are ignored in favour of the message and code provided by the
+	 * `\WP_Error` instance.
 	 *
-	 * Unfortunately, because a `\WP_Error` object may contain multiple messages
-	 * and error codes, only the first message for the first error code in the
-	 * instance will be visible through the exception's methods.
+	 * Depending on whether a `\WP_Error` instance was received, the instance is kept
+	 * or a new one is created from the provided parameters.
 	 *
-	 * Depending on whether a `\WP_Error` instance was received, the instance is
-	 * kept or a new one is created from the provided parameters.
+	 * @param string               $message  Exception message (optional, defaults to empty).
+	 * @param string               $code     Exception code (optional, defaults to empty).
+	 * @param \Exception|\WP_Error $previous Previous exception or error (optional).
 	 *
-	 * @param string $message  Exception message (defaults to empty).
-	 * @param string $code     Exception code (defaults to empty).
-	 * @param mixed  $previous Previous exception or instance of `\WP_Error`
-	 *                         (defaults to none).
+	 * @uses \WP_Error
+	 * @uses \WP_Error::get_error_code()
+	 * @uses \WP_Error::get_error_message()
 	 */
 	public function __construct( $message = '', $code = '', $previous = null ) {
 		$exception   = $previous;
