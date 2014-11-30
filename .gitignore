@@ -1,5 +1,8 @@
 # composer
-/vendor/*
+vendor/*
+
+# npm
+node_modules/*
 
 # phpdocumentor
 /docs/*
