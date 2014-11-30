@@ -54,7 +54,7 @@ gulp.task('watch', function () {
  * gulp clean
  */
 gulp.task('clean', function (cb) {
-  return del(['vendor'], cb);
+  return del(['vendor', 'docs/apigen'], cb);
 });
 
 /**
