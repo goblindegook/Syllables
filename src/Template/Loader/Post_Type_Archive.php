@@ -37,6 +37,8 @@ class Post_Type_Archive extends \Syllables\Template\Loader {
 
 	/**
 	 * Prepares the object when the filter is applied.
+	 *
+	 * @uses get_queried_object()
 	 */
 	protected function _prepare_filter() {
 		$this->post_type = get_queried_object();
@@ -46,6 +48,8 @@ class Post_Type_Archive extends \Syllables\Template\Loader {
 	 * Determines whether a custom template for a post type archive should be loaded.
 	 *
 	 * @return boolean Whether a custom template should be loaded.
+	 *
+	 * @uses is_post_type_archive()
 	 */
 	protected function _should_load_template() {
 		return is_post_type_archive()

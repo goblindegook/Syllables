@@ -37,6 +37,8 @@ class Taxonomy extends \Syllables\Template\Loader {
 
 	/**
 	 * Prepares the object when the filter is applied.
+	 *
+	 * @uses get_queried_object()
 	 */
 	protected function _prepare_filter() {
 		$this->term = get_queried_object();
@@ -46,6 +48,8 @@ class Taxonomy extends \Syllables\Template\Loader {
 	 * Determines whether a custom template for a taxonomy term should be loaded.
 	 *
 	 * @return boolean Whether a custom template should be loaded.
+	 *
+	 * @uses is_tax()
 	 */
 	protected function _should_load_template() {
 		return is_tax()

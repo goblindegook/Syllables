@@ -14,6 +14,8 @@ class Single extends Post_Type_Archive {
 
 	/**
 	 * Prepares the object when the filter is applied.
+	 *
+	 * @uses get_queried_object()
 	 */
 	protected function _prepare_filter() {
 		$post = get_queried_object();
@@ -27,6 +29,8 @@ class Single extends Post_Type_Archive {
 	 * Determines whether a custom template for a single post should be loaded.
 	 *
 	 * @return boolean Whether a custom template should be loaded.
+	 *
+	 * @uses is_single()
 	 */
 	protected function _should_load_template() {
 		return is_single()
