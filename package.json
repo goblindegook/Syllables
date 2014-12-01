@@ -6,6 +6,7 @@
     "gulp-composer": "^0.1.0",
     "gulp-load-plugins": "^0.7.1",
     "gulp-phpunit": "^0.7.0",
+    "gulp-shell": "^0.2.11",
     "gulp-util": "^3.0.1"
   }
 }
