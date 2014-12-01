@@ -12,6 +12,20 @@ function _onError (error) {
 }
 
 /**
+ * gulp build:phpunit
+ */
+gulp.task('build:phpunit', $.shell.task([
+  'bash ./bin/install-wp-tests.sh wordpress_test root "" localhost latest'
+]));
+
+/**
+ * gulp build:docs
+ */
+gulp.task('build:docs', function () {
+  return gulp.start(['apigen']);
+});
+
+/**
  * gulp composer
  */
 gulp.task('composer', function () {
@@ -61,19 +75,19 @@ gulp.task('clean', function (cb) {
  * gulp rebuild
  */
 gulp.task('rebuild', ['clean'], function () {
-  gulp.start(['build']);
+  return gulp.start(['build', 'build:phpunit', 'build:docs']);
 });
 
 /**
  * gulp build
  */
 gulp.task('build', function () {
-  gulp.start('composer');
+  return gulp.start('composer');
 });
 
 /**
  * gulp
  */
 gulp.task('default', function () {
-  gulp.start('build');
+  return gulp.start('build');
 });
