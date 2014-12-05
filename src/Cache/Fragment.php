@@ -10,19 +10,30 @@ namespace Syllables\Cache;
 /**
  * Class that implements fragment caching.
  *
- * Uses code taken from Mark Jaquith's `CWS_Fragment_Cache` class.
+ * Uses code taken from Mark Jaquith's `CWS_Fragment_Cache` class. The `cache()`
+ * method improves upon Jaquith's original interface because it removes the risk of
+ * a developer forgetting to call the `_store()` method and breaking the site.
  *
  * Usage:
  *
  * ```php
  * $fragment = new \Syllables\Cache\Fragment( 'unique-key', 3600 );
  *
- * if ( ! $fragment->output() ) {
- *
+ * $fragment->cache( function () {
  *     expensive_code_that_outputs_something();
+ * } );
+ * ```
  *
- *     $fragment->store(); // IMPORTANT! DO NOT FORGET THIS!
- * }
+ * Usage with variables from the parent scope:
+ *
+ * ```php
+ * $fragment = new \Syllables\Cache\Fragment( 'unique-key', 3600 );
+ *
+ * $param = 'something';
+ *
+ * $fragment->cache( function () use ( &$param ) {
+ *     expensive_code_that_outputs_something( $param );
+ * } );
  * ```
  *
  * @since 0.1.0
@@ -46,17 +57,17 @@ class Fragment {
 	 * Cached data's time-to-live, in seconds.
 	 * @var integer
 	 */
-	protected $ttl;
+	protected $expires;
 
 	/**
 	 * Fragment cache constructor.
 	 *
-	 * @param string  $key Key used to uniquely reference cached data.
-	 * @param integer $ttl Time-to-live (in seconds).
+	 * @param string  $key     Key used to uniquely reference cached data.
+	 * @param integer $expires Cache expiration or TTL, in seconds.
 	 */
-	public function __construct( $key, $ttl ) {
-		$this->key = $key;
-		$this->ttl = $ttl;
+	public function __construct( $key, $expires = 0 ) {
+		$this->key     = $key;
+		$this->expires = $expires;
 	}
 
 	/**
@@ -65,25 +76,38 @@ class Fragment {
 	 *
 	 * @return boolean Whether content was found in the cache.
 	 */
-	public function output() {
-		$output    = wp_cache_get( $this->key, $this->group );
-		$is_cached = ! empty( $output );
+	protected function _output() {
+		$output = wp_cache_get( $this->key, $this->group );
 
-		echo $is_cached ? $output : '';
-
-		if ( ! $is_cached ) {
-			ob_start();
+		if ( ! empty( $output ) ) {
+			echo $output;
+			return true;
 		}
 
-		return $is_cached;
+		ob_start();
+
+		return false;
 	}
 
 	/**
 	 * Stores the rendered snippet in the object cache.
 	 */
-	public function store() {
+	protected function _store() {
 		// Flushes the buffers
 		$output = ob_get_flush();
-		wp_cache_add( $this->key, $output, $this->group, $this->ttl );
+
+		wp_cache_add( $this->key, $output, $this->group, $this->expires );
+	}
+
+	/**
+	 * Cache interface for callables.
+	 *
+	 * @param callable $callable [description]
+	 */
+	public function cache( callable $callable ) {
+		if ( ! $this->_output() ) {
+			call_user_func( $callable );
+			$this->_store();
+		}
 	}
 }
