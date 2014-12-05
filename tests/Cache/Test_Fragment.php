@@ -2,16 +2,26 @@
 
 namespace Syllables\Tests\Cache;
 
+use Syllables\Cache\Fragment;
+
 /**
  * @coversDefaultClass \Syllables\Cache\Fragment
  */
 class Test_Fragment extends \WP_UnitTestCase {
 
 	/**
+	 * Fragment cache object.
+	 * @var Fragment
+	 */
+	var $fragment;
+
+	/**
 	 * Setup a test method.
 	 */
 	public function setUp() {
 		parent::setUp();
+
+		$this->fragment = new Fragment( 'test-cache-key', 3600 );
 	}
 
 	/**
@@ -19,20 +29,34 @@ class Test_Fragment extends \WP_UnitTestCase {
 	 */
 	public function tearDown() {
 		parent::tearDown();
+
+		$this->fragment = null;
 	}
 
 	/**
-	 * @covers ::output
+	 * @covers ::cache
+	 * @covers ::__construct
+	 * @covers ::_output
+	 * @covers ::_store
 	 */
-	public function test_output() {
-		$this->markTestIncomplete();
-	}
+	public function test_cache() {
 
-	/**
-	 * @covers ::store
-	 */
-	public function test_store() {
-		$this->markTestIncomplete();
+		$expected = date( 'c' );
+
+		$this->expectOutputString( $expected );
+
+		$this->fragment->cache( function () use ( &$expected ) {
+			echo $expected;
+		});
+
+		// Flush output buffer.
+		ob_clean();
+
+		$this->expectOutputString( $expected );
+
+		$this->fragment->cache( function () {
+			echo 'something else';
+		});
 	}
 
 }

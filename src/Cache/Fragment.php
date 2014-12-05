@@ -20,6 +20,7 @@ namespace Syllables\Cache;
  * $fragment = new \Syllables\Cache\Fragment( 'unique-key', 3600 );
  *
  * $fragment->cache( function () {
+ *
  *     expensive_code_that_outputs_something();
  * } );
  * ```
@@ -32,6 +33,7 @@ namespace Syllables\Cache;
  * $param = 'something';
  *
  * $fragment->cache( function () use ( &$param ) {
+ *
  *     expensive_code_that_outputs_something( $param );
  * } );
  * ```
@@ -100,9 +102,9 @@ class Fragment {
 	}
 
 	/**
-	 * Cache interface for callables.
+	 * Caches the output of a callable.
 	 *
-	 * @param callable $callable [description]
+	 * @param callable $callable Code whose output should be cached.
 	 */
 	public function cache( callable $callable ) {
 		if ( ! $this->_output() ) {
