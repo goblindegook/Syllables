@@ -14,7 +14,7 @@ class Post_Type_Archive extends \Syllables\Template\Loader {
 
 	/**
 	 * Post types whose templates should be overridden.
-	 * @var array
+	 * @var string[]
 	 */
 	protected $post_types = array();
 
@@ -27,8 +27,8 @@ class Post_Type_Archive extends \Syllables\Template\Loader {
 	/**
 	 * Custom template loader.
 	 *
-	 * @param array  $post_types Post types whose templates should be overriden.
-	 * @param string $base_path  Base path for the template files.
+	 * @param string[] $post_types Post types whose templates should be overriden.
+	 * @param string   $base_path  Base path for the template files.
 	 */
 	public function __construct( $base_path, $post_types ) {
 		parent::__construct( $base_path );
@@ -61,7 +61,7 @@ class Post_Type_Archive extends \Syllables\Template\Loader {
 	/**
 	 * Returns a list of template file paths that match the request.
 	 *
-	 * @return array List with the full path for every valid template that matches the request.
+	 * @return string[] List with the full path for every valid template that matches the request.
 	 */
 	protected function _templates() {
 		return array( "{$this->base_path}archive-{$this->post_type->name}.php" );

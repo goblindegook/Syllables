@@ -14,7 +14,7 @@ class Taxonomy extends \Syllables\Template\Loader {
 
 	/**
 	 * Taxonomies whose templates should be overridden.
-	 * @var array
+	 * @var string[]
 	 */
 	protected $taxonomies = array();
 
@@ -27,8 +27,8 @@ class Taxonomy extends \Syllables\Template\Loader {
 	/**
 	 * Custom template loader.
 	 *
-	 * @param array  $taxonomies Taxonomies whose templates should be overriden.
-	 * @param string $base_path  Base path for the template files.
+	 * @param string[] $taxonomies Taxonomies whose templates should be overriden.
+	 * @param string   $base_path  Base path for the template files.
 	 */
 	public function __construct( $base_path, $taxonomies ) {
 		parent::__construct( $base_path );
@@ -62,7 +62,7 @@ class Taxonomy extends \Syllables\Template\Loader {
 	/**
 	 * Returns a list of template file paths that match the request.
 	 *
-	 * @return array List with the full path for every valid template that matches the request.
+	 * @return string[] List with the full path for every valid template that matches the request.
 	 */
 	protected function _templates() {
 		return array(

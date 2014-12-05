@@ -41,7 +41,7 @@ class Single extends Post_Type_Archive {
 	/**
 	 * Returns a list of template file paths that match the request.
 	 *
-	 * @return array List with the full path for every valid template that matches the request.
+	 * @return string[] List with the full path for every valid template that matches the request.
 	 */
 	protected function _templates() {
 		return array( "{$this->base_path}single-{$this->post_type->name}.php" );
