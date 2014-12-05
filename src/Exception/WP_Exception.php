@@ -73,6 +73,8 @@ class WP_Exception extends \Exception {
 	 * WordPress exception destructor.
 	 *
 	 * Prevents memory leaks by releasing the `::$wp_error` attribute.
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function __destruct() {
 		$this->wp_error = null;
