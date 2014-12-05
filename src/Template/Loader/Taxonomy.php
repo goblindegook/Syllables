@@ -49,10 +49,12 @@ class Taxonomy extends \Syllables\Template\Loader {
 	 *
 	 * @return boolean Whether a custom template should be loaded.
 	 *
+	 * @uses is_category()
+	 * @uses is_tag()
 	 * @uses is_tax()
 	 */
 	protected function _should_load_template() {
-		return is_tax()
+		return ( is_tax() || is_category() || is_tag() )
 			&& ! empty( $this->term->slug )
 			&& in_array( $this->term->taxonomy, $this->taxonomies );
 	}
