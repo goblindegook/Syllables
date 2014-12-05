@@ -13,7 +13,13 @@ class Test_Fragment extends \WP_UnitTestCase {
 	 * Fragment cache object.
 	 * @var Fragment
 	 */
-	var $fragment;
+	protected $fragment;
+
+	/**
+	 * Cache key.
+	 * @var string
+	 */
+	protected $cache_key = 'test-cache-key';
 
 	/**
 	 * Setup a test method.
@@ -21,7 +27,7 @@ class Test_Fragment extends \WP_UnitTestCase {
 	public function setUp() {
 		parent::setUp();
 
-		$this->fragment = new Fragment( 'test-cache-key', 3600 );
+		$this->fragment = new Fragment( $this->cache_key, 3600 );
 	}
 
 	/**
@@ -29,6 +35,8 @@ class Test_Fragment extends \WP_UnitTestCase {
 	 */
 	public function tearDown() {
 		parent::tearDown();
+
+		wp_cache_delete( $this->cache_key, 'syllables-cache-fragments' );
 
 		$this->fragment = null;
 	}
@@ -41,15 +49,12 @@ class Test_Fragment extends \WP_UnitTestCase {
 	 */
 	public function test_cache() {
 
-		$expected = date( 'c' );
-
-		$this->expectOutputString( $expected );
+		$expected = microtime();
 
 		$this->fragment->cache( function () use ( &$expected ) {
 			echo $expected;
 		});
 
-		// Flush output buffer.
 		ob_clean();
 
 		$this->expectOutputString( $expected );

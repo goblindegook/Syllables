@@ -104,9 +104,9 @@ class Fragment {
 	/**
 	 * Caches the output of a callable.
 	 *
-	 * @param callable $callable Code whose output should be cached.
+	 * @param callable|\Closure $callable Code whose output should be cached.
 	 */
-	public function cache( callable $callable ) {
+	public function cache( $callable ) {
 		if ( ! $this->_output() ) {
 			call_user_func( $callable );
 			$this->_store();
