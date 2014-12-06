@@ -77,9 +77,11 @@ class Fragment {
 	 * for caching.
 	 *
 	 * @return boolean Whether content was found in the cache.
+	 *
+	 * @uses \wp_cache_get()
 	 */
 	protected function _output() {
-		$output = wp_cache_get( $this->key, $this->group );
+		$output = \wp_cache_get( $this->key, $this->group );
 
 		if ( ! empty( $output ) ) {
 			echo $output;
@@ -93,12 +95,14 @@ class Fragment {
 
 	/**
 	 * Stores the rendered snippet in the object cache.
+	 *
+	 * @uses \wp_cache_add()
 	 */
 	protected function _store() {
 		// Flushes the buffers
 		$output = ob_get_flush();
 
-		wp_cache_add( $this->key, $output, $this->group, $this->expires );
+		\wp_cache_add( $this->key, $output, $this->group, $this->expires );
 	}
 
 	/**

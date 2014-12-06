@@ -17,7 +17,7 @@ class Test_WP_Exception extends \WP_UnitTestCase {
 	 */
 	public function test_get_wp_error_previous() {
 		$code    = 'test';
-		$message = 'Testing WP_UnitTestCase';
+		$message = 'Testing WP_Exception';
 
 		$wp_error = new \WP_Error( $code, $message );
 
