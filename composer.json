@@ -1,7 +1,6 @@
 {
     "name": "goblindegook/syllables",
     "description": "Syllables are helper classes and functions for WordPress development.",
-    "version": "0.1.0-dev",
     "type": "library",
     "keywords": ["wordpress"],
     "homepage": "https://github.com/goblindegook/Syllables",
