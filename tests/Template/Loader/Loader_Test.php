@@ -73,7 +73,7 @@ class Loader_Test extends TestCase {
 	 */
 	public function test_filter_query_none() {
 
-		$this->mockQuery( null );
+		$this->_mockQuery();
 
 		foreach ( $this->loaders as $loader ) {
 			$this->assertLoaderFilterDoesNotChangeTemplate( $loader,

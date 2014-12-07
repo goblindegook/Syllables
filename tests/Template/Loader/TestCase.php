@@ -44,29 +44,16 @@ class TestCase extends \WP_Mock\Tools\TestCase {
 	public function setUp() {
 		parent::setUp();
 
-		$this->base_path      = __DIR__ . '/templates';
-		$this->mock_object = new \stdClass;
+		$this->base_path   = __DIR__ . '/templates';
 
-		$post_type       = new \stdClass;
-		$post_type->name = null;
-
-		$this->mock_object->slug        = null;       // Slug
-		$this->mock_object->name        = null;       // Post type slug
-		$this->mock_object->has_archive = null;       // Post type archive
-		$this->mock_object->post_type   = $post_type; // Post type object
-		$this->mock_object->term        = null;       // Taxonomy term
-		$this->mock_object->taxonomy    = null;       // Taxonomy slug
-
-		// Mock WordPress API functions:
-
-		\WP_Mock::wpFunction( 'trailingslashit', array(
-			'return' =>
-				function ( $string ) {
-					return rtrim( $string, '/\\' ) . '/';
-				},
-		) );
-
-		\WP_Mock::wpFunction( 'remove_filter' );
+		$this->mock_object = (object) array(
+			'has_archive' => false,                            // Post type archive
+			'name'        => null,                             // Post type slug
+			'post_type'   => (object) array( 'name' => null ), // Post type object
+			'slug'        => null,                             // Slug
+			'taxonomy'    => null,                             // Taxonomy term
+			'term'        => null,                             // Taxonomy slug
+		);
 	}
 
 	/**
@@ -75,7 +62,7 @@ class TestCase extends \WP_Mock\Tools\TestCase {
 	public function tearDown() {
 		parent::tearDown();
 
-		$this->base_path      = null;
+		$this->base_path   = null;
 		$this->mock_object = null;
 	}
 
@@ -105,7 +92,7 @@ class TestCase extends \WP_Mock\Tools\TestCase {
 	 *
 	 * @param integer $query  Query type.
 	 */
-	protected function mockQuery( $query ) {
+	protected function _mockQuery( $query = null ) {
 		$this->_mockQueryFunctionReturns( array(
 			'get_queried_object'   => $this->mock_object,
 			'get_post_type_object' => $this->mock_object->post_type,

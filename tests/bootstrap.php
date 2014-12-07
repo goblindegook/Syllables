@@ -10,6 +10,7 @@ $require = array(
 	'Template/Loader/TestCase.php',
 
 	// Mocks
+	'mocks/functions.php',
 	'mocks/WP_Error.php',
 );
 

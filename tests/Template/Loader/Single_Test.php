@@ -10,6 +10,15 @@ use Syllables\Template\Loader;
 class Single_Test extends TestCase {
 
 	/**
+	 * Set up tests.
+	 */
+	public function setUp() {
+		parent::setUp();
+
+		$this->_mockQuery( static::QUERY_SINGLE );
+	}
+
+	/**
 	 * @covers \Syllables\Template\Loader::filter
 	 * @covers \Syllables\Template\Loader::_get_template
 	 * @covers ::_prepare_filter
@@ -18,8 +27,6 @@ class Single_Test extends TestCase {
 	 */
 	public function test_filter() {
 		$loader = new Loader\Single( $this->base_path, array( 'post_type' ) );
-
-		$this->mockQuery( static::QUERY_SINGLE );
 
 		$this->mock_object->post_type->name = 'post_type';
 
@@ -41,8 +48,6 @@ class Single_Test extends TestCase {
 	 */
 	public function test_filter_template_not_found() {
 		$loader = new Loader\Single( $this->base_path, array( 'file_not_found' ) );
-
-		$this->mockQuery( static::QUERY_SINGLE );
 
 		$this->mock_object->post_type->name = 'file_not_found';
 

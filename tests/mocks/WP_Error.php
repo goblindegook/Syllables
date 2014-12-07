@@ -1,46 +1,50 @@
 <?php
 
-/**
- * Mocks the WP_Error object for testing.
- */
-class WP_Error {
+if ( ! class_exists( 'WP_Error' ) ) {
 
 	/**
-	 * @var string
+	 * Mocks the WP_Error object for testing.
 	 */
-	protected $code;
+	class WP_Error {
 
-	/**
-	 * @var array
-	 */
-	protected $error = array();
+		/**
+		 * @var string
+		 */
+		protected $code;
 
-	public function __construct( $code, $message = '', $data = null ) {
-		$this->code = $code;
+		/**
+		 * @var array
+		 */
+		protected $error = array();
 
-		$this->error[ $code ]['message'] = $message;
-		$this->error[ $code ]['data']    = $data;
-	}
+		public function __construct( $code, $message = '', $data = null ) {
+			$this->code = $code;
 
-	/**
-	 * @return string
-	 */
-	public function get_error_code() {
-		return $this->code;
-	}
+			$this->error[ $code ]['message'] = $message;
+			$this->error[ $code ]['data']    = $data;
+		}
 
-	/**
-	 * @return string
-	 */
-	public function get_error_message( $code ) {
-		return $this->error[ $code ]['message'];
-	}
+		/**
+		 * @return string
+		 */
+		public function get_error_code() {
+			return $this->code;
+		}
 
-	/**
-	 * @return mixed
-	 */
-	public function get_error_data( $code ) {
-		return $this->error[ $code ]['data'];
+		/**
+		 * @return string
+		 */
+		public function get_error_message( $code ) {
+			return $this->error[ $code ]['message'];
+		}
+
+		/**
+		 * @return mixed
+		 */
+		public function get_error_data( $code ) {
+			return $this->error[ $code ]['data'];
+		}
+
 	}
 
 }
