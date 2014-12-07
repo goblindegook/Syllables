@@ -2,7 +2,6 @@
 
 namespace Syllables\Tests\Cache;
 
-use WP_Mock;
 use WP_Mock\Tools\TestCase;
 use Syllables\Cache\Fragment;
 
@@ -64,22 +63,24 @@ class Fragment_Test extends TestCase {
 	public function test_cache_fresh() {
 		$expected = microtime();
 
-		WP_Mock::wpFunction( 'wp_cache_get', array(
-            'times'  => 1,
-            'args'   => array( $this->cache_key, $this->cache_group ),
-            'return' => false,
-        ) );
+		\WP_Mock::wpFunction( 'wp_cache_get', array(
+			'times'  => 1,
+			'args'   => array( $this->cache_key, $this->cache_group ),
+			'return' => false,
+		) );
 
-		WP_Mock::wpFunction( 'wp_cache_add', array(
-            'times' => 1,
-            'args'  => array( $this->cache_key, $expected, $this->cache_group, $this->cache_expires ),
-        ) );
+		\WP_Mock::wpFunction( 'wp_cache_add', array(
+			'times' => 1,
+			'args'  => array( $this->cache_key, $expected, $this->cache_group, $this->cache_expires ),
+		) );
 
-        $this->expectOutputString( $expected );
+		$this->expectOutputString( $expected );
 
 		$this->fragment->cache( function () use ( &$expected ) {
 			echo $expected;
 		});
+
+		$this->assertConditionsMet();
 	}
 
 	/**
@@ -91,22 +92,22 @@ class Fragment_Test extends TestCase {
 	 */
 	public function test_cache_primed() {
 		$expected = microtime();
-		$group    = 'syllables-cache-fragments';
-		$expires  = 0;
 
-		WP_Mock::wpFunction( 'wp_cache_get', array(
-            'times'  => 1,
-            'args'   => array( $this->cache_key, $this->cache_group ),
-            'return' => $expected,
-        ) );
+		\WP_Mock::wpFunction( 'wp_cache_get', array(
+			'times'  => 1,
+			'args'   => array( $this->cache_key, $this->cache_group ),
+			'return' => $expected,
+		) );
 
-		WP_Mock::wpFunction( 'wp_cache_add', array( 'times' => 0 ) );
+		\WP_Mock::wpFunction( 'wp_cache_add', array( 'times' => 0 ) );
 
 		$this->expectOutputString( $expected );
 
 		$this->fragment->cache( function () {
 			echo 'something else';
 		});
+
+		$this->assertConditionsMet();
 	}
 
 }
