@@ -18,12 +18,7 @@ class Taxonomy_Test extends TestCase {
 	 */
 	public function test_ready() {
 		$loader = new Loader\Taxonomy( $this->base_path, array() );
-
-		\WP_Mock::expectFilterAdded( 'template_include', array( $loader, 'filter' ) );
-
-		$loader->ready();
-
-		$this->assertHooksAdded();
+		$this->assertLoaderHooksAdded( $loader );
 	}
 
 	/**
@@ -35,14 +30,8 @@ class Taxonomy_Test extends TestCase {
 	 * @covers \Syllables\Template\Loader::ready
 	 */
 	public function test_ready_priority() {
-		$priority = rand( 11, 99 );
-		$loader   = new Loader\Taxonomy( $this->base_path, array() );
-
-		\WP_Mock::expectFilterAdded( 'template_include', array( $loader, 'filter' ), $priority );
-
-		$loader->ready( $priority );
-
-		$this->assertHooksAdded();
+		$loader = new Loader\Taxonomy( $this->base_path, array() );
+		$this->assertLoaderHooksAddedWithPriority( $loader, rand( 11, 99 ) );
 	}
 
 	/**
@@ -54,10 +43,7 @@ class Taxonomy_Test extends TestCase {
 		$loader   = new Loader\Taxonomy( $this->base_path, array( 'tax' ) );
 		$template = 'test.php';
 
-		\WP_Mock::wpFunction( 'get_queried_object', array( 'return' => null ) );
-		\WP_Mock::wpFunction( 'is_category', array( 'return' => false ) );
-		\WP_Mock::wpFunction( 'is_tag', array( 'return' => false ) );
-		\WP_Mock::wpFunction( 'is_tax', array( 'return' => false ) );
+		$this->mockQuery( null, $term );
 
 		$this->assertEquals( $template, $loader->filter( $template ),
 			'Does not change the template if taxonomy not requested.' );
@@ -68,6 +54,8 @@ class Taxonomy_Test extends TestCase {
 	 * @covers ::_prepare_filter()
 	 * @covers ::_should_load_template()
 	 * @covers ::_templates()
+	 *
+	 * @uses \Syllables\Template\Loader\TestCase::QUERY_CATEGORY
 	 */
 	public function test_filter_query_category() {
 		$loader         = new Loader\Taxonomy( $this->base_path, array( 'category' ) );
@@ -75,10 +63,7 @@ class Taxonomy_Test extends TestCase {
 		$term           = new \stdClass;
 		$term->taxonomy = 'category';
 
-		\WP_Mock::wpFunction( 'get_queried_object', array( 'return' => $term ) );
-		\WP_Mock::wpFunction( 'is_category', array( 'return' => true ) );
-		\WP_Mock::wpFunction( 'is_tag', array( 'return' => false ) );
-		\WP_Mock::wpFunction( 'is_tax', array( 'return' => false ) );
+		$this->mockQuery( static::QUERY_CATEGORY, $term );
 
 		$term->slug = 'non-existent';
 
@@ -96,6 +81,8 @@ class Taxonomy_Test extends TestCase {
 	 * @covers ::_prepare_filter()
 	 * @covers ::_should_load_template()
 	 * @covers ::_templates()
+	 *
+	 * @uses \Syllables\Template\Loader\TestCase::QUERY_POST_TAG
 	 */
 	public function test_filter_query_post_tag() {
 		$loader         = new Loader\Taxonomy( $this->base_path, array( 'post_tag' ) );
@@ -103,10 +90,7 @@ class Taxonomy_Test extends TestCase {
 		$term           = new \stdClass;
 		$term->taxonomy = 'post_tag';
 
-		\WP_Mock::wpFunction( 'get_queried_object', array( 'return' => $term ) );
-		\WP_Mock::wpFunction( 'is_category', array( 'return' => false ) );
-		\WP_Mock::wpFunction( 'is_tag', array( 'return' => true ) );
-		\WP_Mock::wpFunction( 'is_tax', array( 'return' => false ) );
+		$this->mockQuery( static::QUERY_POST_TAG, $term );
 
 		$term->slug = 'non-existent';
 
@@ -124,6 +108,8 @@ class Taxonomy_Test extends TestCase {
 	 * @covers ::_prepare_filter()
 	 * @covers ::_should_load_template()
 	 * @covers ::_templates()
+	 *
+	 * @uses \Syllables\Template\Loader\TestCase::QUERY_TAXONOMY
 	 */
 	public function test_filter_query_taxonomy() {
 		$loader         = new Loader\Taxonomy( $this->base_path, array( 'tax' ) );
@@ -131,10 +117,7 @@ class Taxonomy_Test extends TestCase {
 		$term           = new \stdClass;
 		$term->taxonomy = 'tax';
 
-		\WP_Mock::wpFunction( 'get_queried_object', array( 'return' => $term ) );
-		\WP_Mock::wpFunction( 'is_category', array( 'return' => false ) );
-		\WP_Mock::wpFunction( 'is_tag', array( 'return' => false ) );
-		\WP_Mock::wpFunction( 'is_tax', array( 'return' => true ) );
+		$this->mockQuery( static::QUERY_TAXONOMY, $term );
 
 		$term->slug = 'non-existent';
 
