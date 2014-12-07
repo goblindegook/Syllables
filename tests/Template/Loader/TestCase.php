@@ -105,10 +105,10 @@ class TestCase extends \WP_Mock\Tools\TestCase {
 	}
 
 	/**
-	 * Mocks functions and their returned values.
+	 * Mocks functions and their return values.
 	 *
 	 * @param  array  $functions Array containing the function names to mock as keys
-	 *                           and their return values as values.
+	 *                           and their returns as values.
 	 */
 	protected function _mockQueryFunctionReturns( $functions ) {
 		foreach ( $functions as $function => $return ) {

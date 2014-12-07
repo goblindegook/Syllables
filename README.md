@@ -2,7 +2,7 @@
 
 Syllables are helper classes and functions for WordPress development.
 
-[![Build Status](https://travis-ci.org/goblindegook/Syllables.svg?branch=master)](https://travis-ci.org/goblindegook/Syllables) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/goblindegook/Syllables/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/goblindegook/Syllables/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/goblindegook/Syllables/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/goblindegook/Syllables/?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/goblindegook/syllables/v/stable.svg)](https://packagist.org/packages/goblindegook/syllables) [![Latest Unstable Version](https://poser.pugx.org/goblindegook/syllables/v/unstable.svg)](https://packagist.org/packages/goblindegook/syllables) [![Build Status](https://travis-ci.org/goblindegook/Syllables.svg?branch=master)](https://travis-ci.org/goblindegook/Syllables) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/goblindegook/Syllables/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/goblindegook/Syllables/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/goblindegook/Syllables/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/goblindegook/Syllables/?branch=master)
 
 ## Installation
 
