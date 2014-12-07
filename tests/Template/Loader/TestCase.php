@@ -12,15 +12,29 @@ class TestCase extends \WP_Mock\Tools\TestCase {
 	/**
 	 * Query types.
 	 */
-	const QUERY_TAXONOMY = 1;
-	const QUERY_CATEGORY = 2;
-	const QUERY_POST_TAG = 4;
+	const QUERY_TAXONOMY          = 1;
+	const QUERY_CATEGORY          = 2;
+	const QUERY_POST_TAG          = 4;
+	const QUERY_POST_TYPE_ARCHIVE = 8;
+	const QUERY_SINGLE            = 16;
 
 	/**
 	 * Templates base directory path.
 	 * @var string
 	 */
 	public $base_path;
+
+	/**
+	 * Default template.
+	 * @var string
+	 */
+	protected $default_template = 'test.php';
+
+	/**
+	 * Queried object.
+	 * @var object
+	 */
+	protected $queried_object = null;
 
 	/**
 	 * Setup a test method.
@@ -30,7 +44,8 @@ class TestCase extends \WP_Mock\Tools\TestCase {
 	public function setUp() {
 		parent::setUp();
 
-		$this->base_path = __DIR__ . '/templates';
+		$this->base_path      = __DIR__ . '/templates';
+		$this->queried_object = new \stdClass;
 
 		// Mock WordPress API functions:
 
@@ -50,7 +65,8 @@ class TestCase extends \WP_Mock\Tools\TestCase {
 	public function tearDown() {
 		parent::tearDown();
 
-		$this->base_path = null;
+		$this->base_path      = null;
+		$this->queried_object = null;
 	}
 
 	/**
@@ -80,16 +96,16 @@ class TestCase extends \WP_Mock\Tools\TestCase {
 	 * Mocks a global taxonomy query.
 	 *
 	 * @param integer $query  Query type.
-	 * @param object  $object Queried object.
 	 *
 	 * @uses ::QUERY_CATEGORY
 	 * @uses ::QUERY_POST_TAG
 	 * @uses ::QUERY_TAXONOMY
 	 */
-	public function mockQuery( $query, &$object ) {
+	public function mockQuery( $query ) {
 		$this->_mockQueryFunctionReturns( array(
-			'get_queried_object' => $object,
+			'get_queried_object' => $this->queried_object,
 			'is_category'        => $query === static::QUERY_CATEGORY,
+			'is_single'          => $query === static::QUERY_SINGLE,
 			'is_tag'             => $query === static::QUERY_POST_TAG,
 			'is_tax'             => $query === static::QUERY_TAXONOMY,
 		) );
