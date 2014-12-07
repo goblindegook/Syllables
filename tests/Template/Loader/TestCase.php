@@ -31,10 +31,10 @@ class TestCase extends \WP_Mock\Tools\TestCase {
 	protected $default_template = 'test.php';
 
 	/**
-	 * Queried object.
+	 * Queried object mock.
 	 * @var object
 	 */
-	protected $queried_object = null;
+	protected $mock_object = null;
 
 	/**
 	 * Setup a test method.
@@ -45,7 +45,17 @@ class TestCase extends \WP_Mock\Tools\TestCase {
 		parent::setUp();
 
 		$this->base_path      = __DIR__ . '/templates';
-		$this->queried_object = new \stdClass;
+		$this->mock_object = new \stdClass;
+
+		$post_type       = new \stdClass;
+		$post_type->name = null;
+
+		$this->mock_object->slug        = null;       // Slug
+		$this->mock_object->name        = null;       // Post type slug
+		$this->mock_object->has_archive = null;       // Post type archive
+		$this->mock_object->post_type   = $post_type; // Post type object
+		$this->mock_object->term        = null;       // Taxonomy term
+		$this->mock_object->taxonomy    = null;       // Taxonomy slug
 
 		// Mock WordPress API functions:
 
@@ -66,7 +76,7 @@ class TestCase extends \WP_Mock\Tools\TestCase {
 		parent::tearDown();
 
 		$this->base_path      = null;
-		$this->queried_object = null;
+		$this->mock_object = null;
 	}
 
 	/**
@@ -93,6 +103,27 @@ class TestCase extends \WP_Mock\Tools\TestCase {
 	}
 
 	/**
+	 * Asserts that the loader filter changes the template.
+	 *
+	 * @param \Syllables\Template\Loader $loader   Template loader instance.
+	 * @param string                     $template Filtered template.
+	 * @param string                     $message  Assertion message.
+	 */
+	public function assertLoaderFilterChangesTemplate( $loader, $template, $message = '' ) {
+		$this->assertStringEndsWith( $template, $loader->filter( $this->default_template ), $message );
+	}
+
+	/**
+	 * Asserts that the loader filter does not change the template.
+	 *
+	 * @param \Syllables\Template\Loader $loader  Template loader instance.
+	 * @param string                     $message Assertion message.
+	 */
+	public function assertLoaderFilterDoesNotChangeTemplate( $loader, $message = '' ) {
+		$this->assertEquals( $this->default_template, $loader->filter( $this->default_template ), $message );
+	}
+
+	/**
 	 * Mocks a global taxonomy query.
 	 *
 	 * @param integer $query  Query type.
@@ -103,11 +134,13 @@ class TestCase extends \WP_Mock\Tools\TestCase {
 	 */
 	public function mockQuery( $query ) {
 		$this->_mockQueryFunctionReturns( array(
-			'get_queried_object' => $this->queried_object,
-			'is_category'        => $query === static::QUERY_CATEGORY,
-			'is_single'          => $query === static::QUERY_SINGLE,
-			'is_tag'             => $query === static::QUERY_POST_TAG,
-			'is_tax'             => $query === static::QUERY_TAXONOMY,
+			'get_queried_object'   => $this->mock_object,
+			'get_post_type_object' => $this->mock_object->post_type,
+			'is_category'          => $query === static::QUERY_CATEGORY,
+			'is_post_type_archive' => $query === static::QUERY_POST_TYPE_ARCHIVE,
+			'is_single'            => $query === static::QUERY_SINGLE,
+			'is_tag'               => $query === static::QUERY_POST_TAG,
+			'is_tax'               => $query === static::QUERY_TAXONOMY,
 		) );
 	}
 

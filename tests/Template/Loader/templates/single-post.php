@@ -1,1 +1,0 @@
-Template: single-post.php

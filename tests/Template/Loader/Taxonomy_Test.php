@@ -38,14 +38,18 @@ class Taxonomy_Test extends TestCase {
 	 * @covers \Syllables\Template\Loader::filter
 	 * @covers ::_prepare_filter()
 	 * @covers ::_should_load_template()
+	 * @covers ::_templates()
 	 */
-	public function test_filter_query_none() {
-		$loader   = new Loader\Taxonomy( $this->base_path, array( 'tax' ) );
+	public function test_filter_template_not_found() {
+		$loader = new Loader\Taxonomy( $this->base_path, array( 'file_not_found' ) );
 
-		$this->mockQuery( null );
+		$this->mockQuery( static::QUERY_TAXONOMY );
 
-		$this->assertEquals( $this->default_template, $loader->filter( $this->default_template ),
-			'Does not change the template if taxonomy not requested.' );
+		$this->mock_object->taxonomy = 'file_not_found';
+		$this->mock_object->slug     = 'term';
+
+		$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
+			'Does not change the template if the template file is not found.' );
 	}
 
 	/**
@@ -57,18 +61,18 @@ class Taxonomy_Test extends TestCase {
 	public function test_filter_query_category() {
 		$loader = new Loader\Taxonomy( $this->base_path, array( 'category' ) );
 
-		$this->queried_object->taxonomy = 'category';
+		$this->mock_object->taxonomy = 'category';
 
 		$this->mockQuery( static::QUERY_CATEGORY );
 
-		$this->queried_object->slug = 'non-existent';
+		$this->mock_object->slug = 'non-existent';
 
-		$this->assertEquals( $this->default_template, $loader->filter( $this->default_template ),
+		$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
 			'Does not change the template if custom template not found.' );
 
-		$this->queried_object->slug = 'term';
+		$this->mock_object->slug = 'term';
 
-		$this->assertStringEndsWith( 'taxonomy-category-term.php', $loader->filter( $this->default_template ),
+		$this->assertLoaderFilterChangesTemplate( $loader, 'taxonomy-category-term.php',
 			'Changes the template to taxonomy-category-term.php.' );
 	}
 
@@ -81,18 +85,18 @@ class Taxonomy_Test extends TestCase {
 	public function test_filter_query_post_tag() {
 		$loader = new Loader\Taxonomy( $this->base_path, array( 'post_tag' ) );
 
-		$this->queried_object->taxonomy = 'post_tag';
+		$this->mock_object->taxonomy = 'post_tag';
 
 		$this->mockQuery( static::QUERY_POST_TAG );
 
-		$this->queried_object->slug = 'non-existent';
+		$this->mock_object->slug = 'non-existent';
 
-		$this->assertEquals( $this->default_template, $loader->filter( $this->default_template ),
+		$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
 			'Does not change the template if custom template not found.' );
 
-		$this->queried_object->slug = 'term';
+		$this->mock_object->slug = 'term';
 
-		$this->assertStringEndsWith( 'taxonomy-post_tag-term.php', $loader->filter( $this->default_template ),
+		$this->assertLoaderFilterChangesTemplate( $loader, 'taxonomy-post_tag-term.php',
 			'Changes the template to taxonomy-post_tag-term.php.' );
 	}
 
@@ -105,24 +109,38 @@ class Taxonomy_Test extends TestCase {
 	public function test_filter_query_taxonomy() {
 		$loader = new Loader\Taxonomy( $this->base_path, array( 'tax' ) );
 
-		$this->queried_object->taxonomy = 'tax';
+		$this->mock_object->taxonomy = 'tax';
 
 		$this->mockQuery( static::QUERY_TAXONOMY );
 
-		$this->queried_object->slug = 'non-existent';
+		$this->mock_object->slug = 'non-existent';
 
-		$this->assertStringEndsWith( 'taxonomy-tax.php', $loader->filter( $this->default_template ),
+		$this->assertLoaderFilterChangesTemplate( $loader, 'taxonomy-tax.php',
 			'Changes the template to taxonomy-tax.php.' );
 
-		$this->queried_object->slug = 'term';
+		$this->mock_object->slug = 'term';
 
-		$this->assertStringEndsWith( 'taxonomy-tax-term.php', $loader->filter( $this->default_template ),
+		$this->assertLoaderFilterChangesTemplate( $loader, 'taxonomy-tax-term.php',
 			'Changes the template to taxonomy-tax-term.php.' );
 
-		$this->queried_object->taxonomy = 'other-tax';
+		$this->mock_object->taxonomy = 'other-tax';
 
-		$this->assertEquals( $this->default_template, $loader->filter( $this->default_template ),
+		$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
 			'Does not change the template if taxonomy does not match.' );
+	}
+
+	/**
+	 * @covers \Syllables\Template\Loader::filter
+	 * @covers ::_prepare_filter()
+	 * @covers ::_should_load_template()
+	 */
+	public function test_filter_query_none() {
+		$loader   = new Loader\Taxonomy( $this->base_path, array( 'tax' ) );
+
+		$this->mockQuery( null );
+
+		$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
+			'Does not change the template if taxonomy not requested.' );
 	}
 
 }
