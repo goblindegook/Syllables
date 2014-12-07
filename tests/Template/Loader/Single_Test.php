@@ -5,7 +5,7 @@ namespace Syllables\Tests\Template\Loader;
 use Syllables\Template\Loader;
 
 /**
- * @coversDefaultClass \Syllables\Template\Loader\Single<extended>
+ * @coversDefaultClass \Syllables\Template\Loader\Single
  */
 class Test_Single extends TestCase {
 
@@ -21,6 +21,9 @@ class Test_Single extends TestCase {
 
 	/**
 	 * @covers \Syllables\Template\Loader::filter
+	 * @covers ::_prepare_filter()
+	 * @covers ::_should_load_template()
+	 * @covers ::_templates()
 	 */
 	public function test_filter() {
 		$this->markTestIncomplete();

@@ -5,13 +5,14 @@ namespace Syllables\Tests\Template\Loader;
 use Syllables\Template\Loader;
 
 /**
- * @coversDefaultClass \Syllables\Template\Loader\Taxonomy<extended>
+ * @coversDefaultClass \Syllables\Template\Loader\Taxonomy
  */
 class Taxonomy_Test extends TestCase {
 
 	/**
 	 * Tests hooking the template loader to the WordPress template loading filters.
 	 *
+	 * @covers ::__construct()
 	 * @covers \Syllables\Template\Loader::__construct()
 	 * @covers \Syllables\Template\Loader::ready
 	 */
@@ -30,6 +31,7 @@ class Taxonomy_Test extends TestCase {
 	 * with a priority.
 	 *
 	 * @covers ::__construct()
+	 * @covers \Syllables\Template\Loader::__construct()
 	 * @covers \Syllables\Template\Loader::ready
 	 */
 	public function test_ready_priority() {
