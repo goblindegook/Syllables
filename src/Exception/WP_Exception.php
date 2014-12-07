@@ -66,18 +66,7 @@ class WP_Exception extends \Exception {
 		parent::__construct( $message, null, $exception );
 
 		$this->code     = $code;
-		$this->wp_error = $is_wp_error ? $previous : new \WP_Error( $code, $message, $this );
-	}
-
-	/**
-	 * WordPress exception destructor.
-	 *
-	 * Prevents memory leaks by releasing the `::$wp_error` attribute.
-	 *
-	 * @codeCoverageIgnore
-	 */
-	public function __destruct() {
-		$this->wp_error = null;
+		$this->wp_error = $is_wp_error ? $previous : null;
 	}
 
 	/**
@@ -86,7 +75,7 @@ class WP_Exception extends \Exception {
 	 * @return \WP_Error WordPress error.
 	 */
 	public function get_wp_error() {
-		return $this->wp_error;
+		return $this->wp_error ? $this->wp_error : new \WP_Error( $this->code, $this->message, $this );
 	}
 
 }

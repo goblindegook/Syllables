@@ -38,10 +38,10 @@ class Taxonomy extends \Syllables\Template\Loader {
 	/**
 	 * Prepares the object when the filter is applied.
 	 *
-	 * @uses get_queried_object()
+	 * @uses \get_queried_object()
 	 */
 	protected function _prepare_filter() {
-		$this->term = get_queried_object();
+		$this->term = \get_queried_object();
 	}
 
 	/**
@@ -49,12 +49,12 @@ class Taxonomy extends \Syllables\Template\Loader {
 	 *
 	 * @return boolean Whether a custom template should be loaded.
 	 *
-	 * @uses is_category()
-	 * @uses is_tag()
-	 * @uses is_tax()
+	 * @uses \is_category()
+	 * @uses \is_tag()
+	 * @uses \is_tax()
 	 */
 	protected function _should_load_template() {
-		return ( is_tax() || is_category() || is_tag() )
+		return ( \is_tax() || \is_category() || \is_tag() )
 			&& ! empty( $this->term->slug )
 			&& in_array( $this->term->taxonomy, $this->taxonomies );
 	}

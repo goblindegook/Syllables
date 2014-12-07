@@ -15,10 +15,10 @@ class Single extends Post_Type_Archive {
 	/**
 	 * Prepares the object when the filter is applied.
 	 *
-	 * @uses get_queried_object()
+	 * @uses \get_queried_object()
 	 */
 	protected function _prepare_filter() {
-		$post = get_queried_object();
+		$post = \get_queried_object();
 
 		if ( ! empty( $post->post_type ) ) {
 			$this->post_type = get_post_type_object( $post->post_type );
@@ -30,10 +30,10 @@ class Single extends Post_Type_Archive {
 	 *
 	 * @return boolean Whether a custom template should be loaded.
 	 *
-	 * @uses is_single()
+	 * @uses \is_single()
 	 */
 	protected function _should_load_template() {
-		return is_single()
+		return \is_single()
 			&& ! empty( $this->post_type )
 			&& in_array( $this->post_type->name, $this->post_types );
 	}

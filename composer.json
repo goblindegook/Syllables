@@ -18,16 +18,13 @@
     "autoload": {
         "psr-4": {
             "Syllables\\": "src/"
-        },
-        "classmap": [],
-        "files": []
+        }
     },
     "autoload-dev": {
         "psr-4": {
             "Syllables\\Tests\\": "tests/"
         },
-        "classmap": [],
-        "files": []
+        "classmap": ["tests/mocks/"]
     },
     "require": {
         "php": ">=5.3.0",
@@ -35,7 +32,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "*@stable",
-        "apigen/apigen": "~4.0.0@dev"
+        "apigen/apigen": "~4.0.0@dev",
+        "10up/wp_mock": "dev-master"
     },
     "suggest": {}
 }

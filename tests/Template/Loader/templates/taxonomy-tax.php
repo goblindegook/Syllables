@@ -1,0 +1,1 @@
+Template: taxonomy-tax.php

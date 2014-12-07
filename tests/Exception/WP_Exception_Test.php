@@ -2,45 +2,59 @@
 
 namespace Syllables\Tests\Exception;
 
+use WP_Mock;
+use WP_Mock\Tools\TestCase;
 use Syllables\Exception\WP_Exception;
 
 /**
  * @coversDefaultClass \Syllables\Exception\WP_Exception
+ *
  */
-class Test_WP_Exception extends \WP_UnitTestCase {
+class WP_Exception_Test extends TestCase {
+
+	/**
+	 * Test error code.
+	 * @var string
+	 */
+	protected $code    = 'test';
+
+	/**
+	 * Test error message.
+	 * @var string
+	 */
+	protected $message = 'Testing WP_Exception';
 
 	/**
 	 * Checks that `\WP_Error` objects are correctly passed inside `WP_Exception`.
 	 *
 	 * @covers ::__construct
 	 * @covers ::get_wp_error
+	 *
+	 * @uses \WP_Error
 	 */
 	public function test_get_wp_error_previous() {
-		$code    = 'test';
-		$message = 'Testing WP_Exception';
-
-		$wp_error = new \WP_Error( $code, $message );
+		$expected_wp_error = new \WP_Error( $this->code, $this->message );
 
 		try {
-			throw new WP_Exception( null, null, $wp_error );
+			throw new WP_Exception( null, null, $expected_wp_error );
 
 		} catch ( WP_Exception $exception ) {
-			$actual_wp_error = $exception->get_wp_error();
+			$wp_error = $exception->get_wp_error();
 
-			$this->assertSame( $wp_error, $actual_wp_error,
+			$this->assertSame( $expected_wp_error, $wp_error,
 				'WP_Error is passed inside the exception.' );
 
-			$actual_code = $actual_wp_error->get_error_code();
+			$code = $wp_error->get_error_code();
 
-			$this->assertEquals( $exception->getCode(), $actual_code,
+			$this->assertEquals( $exception->getCode(), $code,
 				'Exception has the same code as WP_Error.' );
 
-			$actual_message = $actual_wp_error->get_error_message( $actual_code );
+			$message = $wp_error->get_error_message( $code );
 
-			$this->assertEquals( $exception->getMessage(), $actual_message,
+			$this->assertEquals( $exception->getMessage(), $message,
 				'Exception has the same message as WP_Error.' );
 
-			$actual_exception = $actual_wp_error->get_error_data( $actual_code );
+			$actual_exception = $wp_error->get_error_data( $code );
 
 			$this->assertNotSame( $exception, $actual_exception,
 				'WP_Error data does not contain the thrown exception' );
@@ -52,31 +66,30 @@ class Test_WP_Exception extends \WP_UnitTestCase {
 	 *
 	 * @covers ::__construct
 	 * @covers ::get_wp_error
+	 *
+	 * @uses \WP_Error
 	 */
 	public function test_get_wp_error_new() {
-		$code    = 'test';
-		$message = 'Testing WP_UnitTestCase';
-
 		try {
-			throw new WP_Exception( $message, $code );
+			throw new WP_Exception( $this->message, $this->code );
 
 		} catch ( WP_Exception $exception ) {
-			$actual_wp_error = $exception->get_wp_error();
+			$wp_error = $exception->get_wp_error();
 
-			$this->assertInstanceOf( '\WP_Error', $actual_wp_error,
+			$this->assertInstanceOf( '\WP_Error', $wp_error,
 				'WP_Error created from exception is an instance of \WP_Error.' );
 
-			$actual_code = $actual_wp_error->get_error_code();
+			$code = $wp_error->get_error_code();
 
-			$this->assertEquals( $code, $actual_code,
+			$this->assertEquals( $this->code, $code,
 				'WP_Error created from exception has the same code.' );
 
-			$actual_message = $actual_wp_error->get_error_message( $actual_code );
+			$message = $wp_error->get_error_message( $code );
 
-			$this->assertEquals( $message, $actual_message,
+			$this->assertEquals( $this->message, $message,
 				'WP_Error created from exception has the same message.' );
 
-			$actual_exception = $actual_wp_error->get_error_data( $actual_code );
+			$actual_exception = $wp_error->get_error_data( $code );
 
 			$this->assertSame( $exception, $actual_exception,
 				'WP_Error data contains the thrown exception' );

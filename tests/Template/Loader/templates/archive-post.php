@@ -1,0 +1,1 @@
+Template: archive-post.php
