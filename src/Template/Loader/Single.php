@@ -16,12 +16,13 @@ class Single extends Post_Type_Archive {
 	 * Prepares the object when the filter is applied.
 	 *
 	 * @uses \get_queried_object()
+	 * @uses \get_post_type_object()
 	 */
 	protected function _prepare_filter() {
 		$post = \get_queried_object();
 
 		if ( ! empty( $post->post_type ) ) {
-			$this->post_type = get_post_type_object( $post->post_type );
+			$this->post_type = \get_post_type_object( $post->post_type );
 		}
 	}
 
