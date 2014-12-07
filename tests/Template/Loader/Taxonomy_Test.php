@@ -54,8 +54,6 @@ class Taxonomy_Test extends TestCase {
 	 * @covers ::_prepare_filter()
 	 * @covers ::_should_load_template()
 	 * @covers ::_templates()
-	 *
-	 * @uses \Syllables\Template\Loader\TestCase::QUERY_CATEGORY
 	 */
 	public function test_filter_query_category() {
 		$loader         = new Loader\Taxonomy( $this->base_path, array( 'category' ) );
@@ -81,8 +79,6 @@ class Taxonomy_Test extends TestCase {
 	 * @covers ::_prepare_filter()
 	 * @covers ::_should_load_template()
 	 * @covers ::_templates()
-	 *
-	 * @uses \Syllables\Template\Loader\TestCase::QUERY_POST_TAG
 	 */
 	public function test_filter_query_post_tag() {
 		$loader         = new Loader\Taxonomy( $this->base_path, array( 'post_tag' ) );
@@ -108,8 +104,6 @@ class Taxonomy_Test extends TestCase {
 	 * @covers ::_prepare_filter()
 	 * @covers ::_should_load_template()
 	 * @covers ::_templates()
-	 *
-	 * @uses \Syllables\Template\Loader\TestCase::QUERY_TAXONOMY
 	 */
 	public function test_filter_query_taxonomy() {
 		$loader         = new Loader\Taxonomy( $this->base_path, array( 'tax' ) );

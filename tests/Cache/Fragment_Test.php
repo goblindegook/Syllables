@@ -57,8 +57,6 @@ class Fragment_Test extends TestCase {
 	 * @covers ::__construct
 	 * @covers ::_output
 	 * @covers ::_store
-	 *
-	 * @uses \WP_Mock::wpFunction()
 	 */
 	public function test_cache_fresh() {
 		$expected = microtime();
@@ -87,8 +85,6 @@ class Fragment_Test extends TestCase {
 	 * @covers ::cache
 	 * @covers ::__construct
 	 * @covers ::_output
-	 *
-	 * @uses \WP_Mock::wpFunction()
 	 */
 	public function test_cache_primed() {
 		$expected = microtime();
