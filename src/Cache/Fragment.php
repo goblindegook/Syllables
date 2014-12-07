@@ -83,7 +83,7 @@ class Fragment {
 	protected function _output() {
 		$output = \wp_cache_get( $this->key, $this->group );
 
-		if ( ! empty( $output ) ) {
+		if ( $output !== false ) {
 			echo $output;
 			return true;
 		}
