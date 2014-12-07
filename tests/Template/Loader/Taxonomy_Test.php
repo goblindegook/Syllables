@@ -12,8 +12,8 @@ class Taxonomy_Test extends TestCase {
 	/**
 	 * Tests hooking the template loader to the WordPress template loading filters.
 	 *
-	 * @covers ::__construct()
-	 * @covers \Syllables\Template\Loader::__construct()
+	 * @covers ::__construct
+	 * @covers \Syllables\Template\Loader::__construct
 	 * @covers \Syllables\Template\Loader::ready
 	 */
 	public function test_ready() {
@@ -25,8 +25,8 @@ class Taxonomy_Test extends TestCase {
 	 * Tests hooking the template loader to the WordPress template loading filters
 	 * with a priority.
 	 *
-	 * @covers ::__construct()
-	 * @covers \Syllables\Template\Loader::__construct()
+	 * @covers ::__construct
+	 * @covers \Syllables\Template\Loader::__construct
 	 * @covers \Syllables\Template\Loader::ready
 	 */
 	public function test_ready_priority() {
@@ -36,9 +36,10 @@ class Taxonomy_Test extends TestCase {
 
 	/**
 	 * @covers \Syllables\Template\Loader::filter
-	 * @covers ::_prepare_filter()
-	 * @covers ::_should_load_template()
-	 * @covers ::_templates()
+	 * @covers \Syllables\Template\Loader::_get_template
+	 * @covers ::_prepare_filter
+	 * @covers ::_should_load_template
+	 * @covers ::_templates
 	 */
 	public function test_filter_template_not_found() {
 		$loader = new Loader\Taxonomy( $this->base_path, array( 'file_not_found' ) );
@@ -54,9 +55,10 @@ class Taxonomy_Test extends TestCase {
 
 	/**
 	 * @covers \Syllables\Template\Loader::filter
-	 * @covers ::_prepare_filter()
-	 * @covers ::_should_load_template()
-	 * @covers ::_templates()
+	 * @covers \Syllables\Template\Loader::_get_template
+	 * @covers ::_prepare_filter
+	 * @covers ::_should_load_template
+	 * @covers ::_templates
 	 */
 	public function test_filter_query_category() {
 		$loader = new Loader\Taxonomy( $this->base_path, array( 'category' ) );
@@ -78,9 +80,10 @@ class Taxonomy_Test extends TestCase {
 
 	/**
 	 * @covers \Syllables\Template\Loader::filter
-	 * @covers ::_prepare_filter()
-	 * @covers ::_should_load_template()
-	 * @covers ::_templates()
+	 * @covers \Syllables\Template\Loader::_get_template
+	 * @covers ::_prepare_filter
+	 * @covers ::_should_load_template
+	 * @covers ::_templates
 	 */
 	public function test_filter_query_post_tag() {
 		$loader = new Loader\Taxonomy( $this->base_path, array( 'post_tag' ) );
@@ -102,9 +105,10 @@ class Taxonomy_Test extends TestCase {
 
 	/**
 	 * @covers \Syllables\Template\Loader::filter
-	 * @covers ::_prepare_filter()
-	 * @covers ::_should_load_template()
-	 * @covers ::_templates()
+	 * @covers \Syllables\Template\Loader::_get_template
+	 * @covers ::_prepare_filter
+	 * @covers ::_should_load_template
+	 * @covers ::_templates
 	 */
 	public function test_filter_query_taxonomy() {
 		$loader = new Loader\Taxonomy( $this->base_path, array( 'tax' ) );
@@ -131,8 +135,8 @@ class Taxonomy_Test extends TestCase {
 
 	/**
 	 * @covers \Syllables\Template\Loader::filter
-	 * @covers ::_prepare_filter()
-	 * @covers ::_should_load_template()
+	 * @covers ::_prepare_filter
+	 * @covers ::_should_load_template
 	 */
 	public function test_filter_query_none() {
 		$loader   = new Loader\Taxonomy( $this->base_path, array( 'tax' ) );

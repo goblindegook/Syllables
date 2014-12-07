@@ -79,9 +79,7 @@ abstract class Loader {
 	/**
 	 * Prepares the object when the filter is applied.
 	 */
-	protected function _prepare_filter() {
-		// Optionally override this.
-	}
+	abstract protected function _prepare_filter();
 
 	/**
 	 * Determines whether a custom template should be loaded.

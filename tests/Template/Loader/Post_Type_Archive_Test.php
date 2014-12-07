@@ -12,8 +12,8 @@ class Post_Type_Archive_Test extends TestCase {
 	/**
 	 * Tests hooking the template loader to the WordPress template loading filters.
 	 *
-	 * @covers ::__construct()
-	 * @covers \Syllables\Template\Loader::__construct()
+	 * @covers ::__construct
+	 * @covers \Syllables\Template\Loader::__construct
 	 * @covers \Syllables\Template\Loader::ready
 	 */
 	public function test_ready() {
@@ -25,8 +25,8 @@ class Post_Type_Archive_Test extends TestCase {
 	 * Tests hooking the template loader to the WordPress template loading filters
 	 * with a priority.
 	 *
-	 * @covers ::__construct()
-	 * @covers \Syllables\Template\Loader::__construct()
+	 * @covers ::__construct
+	 * @covers \Syllables\Template\Loader::__construct
 	 * @covers \Syllables\Template\Loader::ready
 	 */
 	public function test_ready_priority() {
@@ -36,9 +36,10 @@ class Post_Type_Archive_Test extends TestCase {
 
 	/**
 	 * @covers \Syllables\Template\Loader::filter
-	 * @covers ::_prepare_filter()
-	 * @covers ::_should_load_template()
-	 * @covers ::_templates()
+	 * @covers \Syllables\Template\Loader::_get_template
+	 * @covers ::_prepare_filter
+	 * @covers ::_should_load_template
+	 * @covers ::_templates
 	 */
 	public function test_filter() {
 		$loader = new Loader\Post_Type_Archive( $this->base_path, array( 'post_type' ) );
@@ -64,8 +65,10 @@ class Post_Type_Archive_Test extends TestCase {
 
 	/**
 	 * @covers \Syllables\Template\Loader::filter
-	 * @covers ::_prepare_filter()
-	 * @covers ::_should_load_template()
+	 * @covers \Syllables\Template\Loader::_get_template
+	 * @covers ::_prepare_filter
+	 * @covers ::_should_load_template
+	 * @covers ::_templates
 	 */
 	public function test_filter_template_not_found() {
 		$loader = new Loader\Post_Type_Archive( $this->base_path, array( 'file_not_found' ) );
@@ -81,8 +84,8 @@ class Post_Type_Archive_Test extends TestCase {
 
 	/**
 	 * @covers \Syllables\Template\Loader::filter
-	 * @covers ::_prepare_filter()
-	 * @covers ::_should_load_template()
+	 * @covers ::_prepare_filter
+	 * @covers ::_should_load_template
 	 */
 	public function test_filter_query_none() {
 		$loader = new Loader\Post_Type_Archive( $this->base_path, array( 'post_type' ) );
