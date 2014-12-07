@@ -13,9 +13,5 @@ if ( ! function_exists( 'trailingslashit' ) ) {
 }
 
 if ( ! function_exists( 'remove_filter' ) ) {
-
-	function remove_filter( $tag, $callable, $priority = 10, $expected_args = 1 ) {
-		return;
-	}
-
+	\WP_Mock::wpFunction( 'remove_filter' );
 }
