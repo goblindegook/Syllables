@@ -10,31 +10,6 @@ use Syllables\Template\Loader;
 class Post_Type_Archive_Test extends TestCase {
 
 	/**
-	 * Tests hooking the template loader to the WordPress template loading filters.
-	 *
-	 * @covers ::__construct
-	 * @covers \Syllables\Template\Loader::__construct
-	 * @covers \Syllables\Template\Loader::ready
-	 */
-	public function test_ready() {
-		$loader = new Loader\Post_Type_Archive( $this->base_path, array() );
-		$this->assertLoaderHooksAdded( $loader );
-	}
-
-	/**
-	 * Tests hooking the template loader to the WordPress template loading filters
-	 * with a priority.
-	 *
-	 * @covers ::__construct
-	 * @covers \Syllables\Template\Loader::__construct
-	 * @covers \Syllables\Template\Loader::ready
-	 */
-	public function test_ready_priority() {
-		$loader = new Loader\Post_Type_Archive( $this->base_path, array() );
-		$this->assertLoaderHooksAddedWithPriority( $loader, rand( 11, 99 ) );
-	}
-
-	/**
 	 * @covers \Syllables\Template\Loader::filter
 	 * @covers \Syllables\Template\Loader::_get_template
 	 * @covers ::_prepare_filter
@@ -80,20 +55,6 @@ class Post_Type_Archive_Test extends TestCase {
 
 		$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
 			'Does not change the template if the template file is not found.' );
-	}
-
-	/**
-	 * @covers \Syllables\Template\Loader::filter
-	 * @covers ::_prepare_filter
-	 * @covers ::_should_load_template
-	 */
-	public function test_filter_query_none() {
-		$loader = new Loader\Post_Type_Archive( $this->base_path, array( 'post_type' ) );
-
-		$this->mockQuery( null );
-
-		$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
-			'Does not change the template if post type archive not requested.' );
 	}
 
 }

@@ -7,32 +7,7 @@ use Syllables\Template\Loader;
 /**
  * @coversDefaultClass \Syllables\Template\Loader\Single
  */
-class Test_Single extends TestCase {
-
-	/**
-	 * Tests hooking the template loader to the WordPress template loading filters.
-	 *
-	 * @covers ::__construct
-	 * @covers \Syllables\Template\Loader::__construct
-	 * @covers \Syllables\Template\Loader::ready
-	 */
-	public function test_ready() {
-		$loader = new Loader\Single( $this->base_path, array() );
-		$this->assertLoaderHooksAdded( $loader );
-	}
-
-	/**
-	 * Tests hooking the template loader to the WordPress template loading filters
-	 * with a priority.
-	 *
-	 * @covers ::__construct
-	 * @covers \Syllables\Template\Loader::__construct
-	 * @covers \Syllables\Template\Loader::ready
-	 */
-	public function test_ready_priority() {
-		$loader = new Loader\Single( $this->base_path, array() );
-		$this->assertLoaderHooksAddedWithPriority( $loader, rand( 11, 99 ) );
-	}
+class Single_Test extends TestCase {
 
 	/**
 	 * @covers \Syllables\Template\Loader::filter
@@ -73,20 +48,6 @@ class Test_Single extends TestCase {
 
 		$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
 			'Does not change the template if the template file is not found.' );
-	}
-
-	/**
-	 * @covers \Syllables\Template\Loader::filter
-	 * @covers ::_prepare_filter
-	 * @covers ::_should_load_template
-	 */
-	public function test_filter_query_none() {
-		$loader = new Loader\Single( $this->base_path, array( 'post_type' ) );
-
-		$this->mockQuery( null );
-
-		$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
-			'Does not change the template if single post not requested.' );
 	}
 
 }

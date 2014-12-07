@@ -80,29 +80,6 @@ class TestCase extends \WP_Mock\Tools\TestCase {
 	}
 
 	/**
-	 * Asserts that the template loader is hooked to template_include.
-	 *
-	 * @param \Syllables\Template\Loader $loader Template loader instance.
-	 */
-	public function assertLoaderHooksAdded( $loader ) {
-		\WP_Mock::expectFilterAdded( 'template_include', array( $loader, 'filter' ) );
-		$loader->ready();
-		$this->assertHooksAdded();
-	}
-
-	/**
-	 * Asserts that the template loader is hooked to template_include.
-	 *
-	 * @param \Syllables\Template\Loader $loader   Template loader instance.
-	 * @param integer                    $priority Filter priority.
-	 */
-	public function assertLoaderHooksAddedWithPriority( $loader, $priority ) {
-		\WP_Mock::expectFilterAdded( 'template_include', array( $loader, 'filter' ), $priority );
-		$loader->ready( $priority );
-		$this->assertHooksAdded();
-	}
-
-	/**
 	 * Asserts that the loader filter changes the template.
 	 *
 	 * @param \Syllables\Template\Loader $loader   Template loader instance.
@@ -127,12 +104,8 @@ class TestCase extends \WP_Mock\Tools\TestCase {
 	 * Mocks a global taxonomy query.
 	 *
 	 * @param integer $query  Query type.
-	 *
-	 * @uses ::QUERY_CATEGORY
-	 * @uses ::QUERY_POST_TAG
-	 * @uses ::QUERY_TAXONOMY
 	 */
-	public function mockQuery( $query ) {
+	protected function mockQuery( $query ) {
 		$this->_mockQueryFunctionReturns( array(
 			'get_queried_object'   => $this->mock_object,
 			'get_post_type_object' => $this->mock_object->post_type,

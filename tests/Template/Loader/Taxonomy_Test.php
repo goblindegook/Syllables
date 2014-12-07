@@ -10,31 +10,6 @@ use Syllables\Template\Loader;
 class Taxonomy_Test extends TestCase {
 
 	/**
-	 * Tests hooking the template loader to the WordPress template loading filters.
-	 *
-	 * @covers ::__construct
-	 * @covers \Syllables\Template\Loader::__construct
-	 * @covers \Syllables\Template\Loader::ready
-	 */
-	public function test_ready() {
-		$loader = new Loader\Taxonomy( $this->base_path, array() );
-		$this->assertLoaderHooksAdded( $loader );
-	}
-
-	/**
-	 * Tests hooking the template loader to the WordPress template loading filters
-	 * with a priority.
-	 *
-	 * @covers ::__construct
-	 * @covers \Syllables\Template\Loader::__construct
-	 * @covers \Syllables\Template\Loader::ready
-	 */
-	public function test_ready_priority() {
-		$loader = new Loader\Taxonomy( $this->base_path, array() );
-		$this->assertLoaderHooksAddedWithPriority( $loader, rand( 11, 99 ) );
-	}
-
-	/**
 	 * @covers \Syllables\Template\Loader::filter
 	 * @covers \Syllables\Template\Loader::_get_template
 	 * @covers ::_prepare_filter
@@ -67,7 +42,7 @@ class Taxonomy_Test extends TestCase {
 
 		$this->mockQuery( static::QUERY_CATEGORY );
 
-		$this->mock_object->slug = 'non-existent';
+		$this->mock_object->slug = 'no-such-category';
 
 		$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
 			'Does not change the template if custom template not found.' );
@@ -92,7 +67,7 @@ class Taxonomy_Test extends TestCase {
 
 		$this->mockQuery( static::QUERY_POST_TAG );
 
-		$this->mock_object->slug = 'non-existent';
+		$this->mock_object->slug = 'no-such-tag';
 
 		$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
 			'Does not change the template if custom template not found.' );
@@ -117,7 +92,7 @@ class Taxonomy_Test extends TestCase {
 
 		$this->mockQuery( static::QUERY_TAXONOMY );
 
-		$this->mock_object->slug = 'non-existent';
+		$this->mock_object->slug = 'no-term-template';
 
 		$this->assertLoaderFilterChangesTemplate( $loader, 'taxonomy-tax.php',
 			'Changes the template to taxonomy-tax.php.' );
@@ -131,20 +106,6 @@ class Taxonomy_Test extends TestCase {
 
 		$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
 			'Does not change the template if taxonomy does not match.' );
-	}
-
-	/**
-	 * @covers \Syllables\Template\Loader::filter
-	 * @covers ::_prepare_filter
-	 * @covers ::_should_load_template
-	 */
-	public function test_filter_query_none() {
-		$loader   = new Loader\Taxonomy( $this->base_path, array( 'tax' ) );
-
-		$this->mockQuery( null );
-
-		$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
-			'Does not change the template if taxonomy not requested.' );
 	}
 
 }

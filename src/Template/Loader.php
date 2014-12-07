@@ -78,6 +78,8 @@ abstract class Loader {
 
 	/**
 	 * Prepares the object when the filter is applied.
+	 *
+	 * @return null
 	 */
 	abstract protected function _prepare_filter();
 
