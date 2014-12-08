@@ -81,7 +81,7 @@ class Fragment_Test extends TestCase {
 	/**
 	 * @covers ::cache
 	 *
-	 * @dataProvider provider_cache
+	 * @dataProvider cache_provider
 	 */
 	public function test_cache( $expected, $message ) {
 		\WP_Mock::wpFunction( 'wp_cache_get', array(
@@ -104,7 +104,7 @@ class Fragment_Test extends TestCase {
 	/**
 	 * @return array Expected cache() output.
 	 */
-	public function provider_cache() {
+	public function cache_provider() {
 		return array(
 			array( microtime(), 'Should output a cached string.' ),
 			array( 0, 'Caching the value 0 should not be considered a miss.' ),

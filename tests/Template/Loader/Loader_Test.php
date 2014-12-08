@@ -11,7 +11,7 @@ class Loader_Test extends TestCase {
 	 *
 	 * @covers \Syllables\Template\Loader::ready
 	 *
-	 * @dataProvider provider_loader
+	 * @dataProvider loader_provider
 	 */
 	public function test_ready( $loader ) {
 		\WP_Mock::expectFilterAdded( 'template_include', array( $loader, 'filter' ) );
@@ -25,7 +25,7 @@ class Loader_Test extends TestCase {
 	 *
 	 * @covers \Syllables\Template\Loader::ready
 	 *
-	 * @dataProvider provider_loader
+	 * @dataProvider loader_provider
 	 */
 	public function test_ready_priority( $loader ) {
 		$priority = rand( 11, 99 );
@@ -37,7 +37,7 @@ class Loader_Test extends TestCase {
 	/**
 	 * @covers \Syllables\Template\Loader::filter
 	 *
-	 * @dataProvider provider_loader
+	 * @dataProvider loader_provider
 	 */
 	public function test_filter_query_none( $loader ) {
 		$this->_mockQuery();
@@ -48,7 +48,7 @@ class Loader_Test extends TestCase {
 	/**
 	 * @return array Loader instances.
 	 */
-	public function provider_loader() {
+	public function loader_provider() {
 		return array(
 			array( new Loader\Post_Type_Archive( $this->base_path, array() ) ),
 			array( new Loader\Single( $this->base_path, array() ) ),

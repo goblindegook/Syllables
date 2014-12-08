@@ -33,38 +33,33 @@ class Taxonomy_Test extends TestCase {
 
 	/**
 	 * @covers \Syllables\Template\Loader::filter
+	 *
+	 * @dataProvider filter_provider
 	 */
-	public function test_filter_query_category() {
-		$loader = new Loader\Taxonomy( $this->base_path, array( 'category' ) );
+	public function test_filter( $taxonomy, $invalid_slug, $slug, $expected ) {
+		$loader = new Loader\Taxonomy( $this->base_path, array( $taxonomy ) );
 
-		$this->mock_object->taxonomy = 'category';
-		$this->mock_object->slug     = 'no-such-category';
+		$this->mock_object->taxonomy = $taxonomy;
+		$this->mock_object->slug     = $invalid_slug;
 
 		$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
 			'Does not change the template if custom template not found.' );
 
-		$this->mock_object->slug = 'term';
+		$this->mock_object->slug = $slug;
 
-		$this->assertLoaderFilterChangesTemplate( $loader, 'taxonomy-category-term.php',
-			'Changes the template to taxonomy-category-term.php.' );
+		$this->assertLoaderFilterChangesTemplate( $loader, $expected,
+			"Changes the template to $expected." );
 	}
 
 	/**
-	 * @covers \Syllables\Template\Loader::filter
+	 * @return array
 	 */
-	public function test_filter_query_post_tag() {
-		$loader = new Loader\Taxonomy( $this->base_path, array( 'post_tag' ) );
-
-		$this->mock_object->taxonomy = 'post_tag';
-		$this->mock_object->slug     = 'no-such-tag';
-
-		$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
-			'Does not change the template if custom template not found.' );
-
-		$this->mock_object->slug = 'term';
-
-		$this->assertLoaderFilterChangesTemplate( $loader, 'taxonomy-post_tag-term.php',
-			'Changes the template to taxonomy-post_tag-term.php.' );
+	public function filter_provider() {
+		return array(
+			array( 'category', 'no-term', 'term', 'taxonomy-category-term.php' ),
+			array( 'post_tag', 'no-term', 'term', 'taxonomy-post_tag-term.php' ),
+			array( 'custom', 'no-term', 'term', 'taxonomy-custom-term.php' ),
+		);
 	}
 
 	/**
