@@ -35,6 +35,8 @@ class Loader_Test extends TestCase {
 	}
 
 	/**
+	 * @param \Syllables\Template\Loader $loader Template loader instance.
+	 *
 	 * @covers \Syllables\Template\Loader::filter
 	 *
 	 * @dataProvider loader_provider

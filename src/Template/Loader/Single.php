@@ -13,6 +13,12 @@ namespace Syllables\Template\Loader;
 class Single extends Post_Type_Archive {
 
 	/**
+	 * Queried post slug.
+	 * @var string
+	 */
+	protected $slug;
+
+	/**
 	 * Prepares the object when the filter is applied.
 	 *
 	 * @uses \get_queried_object()
@@ -23,8 +29,13 @@ class Single extends Post_Type_Archive {
 	protected function _prepare_filter() {
 		$post = \get_queried_object();
 
+		if ( ! empty( $post->post_name ) ) {
+			$this->slug = $post->post_name;
+		}
+
 		if ( ! empty( $post->post_type ) ) {
-			$this->post_type = \get_post_type_object( $post->post_type );
+			$post_type       = \get_post_type_object( $post->post_type );
+			$this->post_type = $post_type->name;
 		}
 	}
 
@@ -38,9 +49,7 @@ class Single extends Post_Type_Archive {
 	 * @codeCoverageIgnore
 	 */
 	protected function _should_load_template() {
-		return \is_single()
-			&& ! empty( $this->post_type )
-			&& in_array( $this->post_type->name, $this->post_types );
+		return \is_single() && in_array( $this->post_type, $this->post_types );
 	}
 
 	/**
@@ -51,6 +60,9 @@ class Single extends Post_Type_Archive {
 	 * @codeCoverageIgnore
 	 */
 	protected function _templates() {
-		return array( "{$this->base_path}single-{$this->post_type->name}.php" );
+		return array(
+			"{$this->base_path}single-{$this->post_type}-{$this->slug}.php",
+			"{$this->base_path}single-{$this->post_type}.php",
+		);
 	}
 }

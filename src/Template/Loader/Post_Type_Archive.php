@@ -20,9 +20,9 @@ class Post_Type_Archive extends \Syllables\Template\Loader {
 
 	/**
 	 * Queried post type slug.
-	 * @var object
+	 * @var string
 	 */
-	protected $post_type;
+	protected $post_type = '';
 
 	/**
 	 * Custom template loader.
@@ -45,7 +45,11 @@ class Post_Type_Archive extends \Syllables\Template\Loader {
 	 * @codeCoverageIgnore
 	 */
 	protected function _prepare_filter() {
-		$this->post_type = \get_queried_object();
+		$post_type = \get_queried_object();
+
+		if ( ! empty( $post_type->name ) && ! empty( $post_type->has_archive ) ) {
+			$this->post_type = $post_type->name;
+		}
 	}
 
 	/**
@@ -59,9 +63,7 @@ class Post_Type_Archive extends \Syllables\Template\Loader {
 	 */
 	protected function _should_load_template() {
 		return \is_post_type_archive()
-			&& ! empty( $this->post_type )
-			&& in_array( $this->post_type->name, $this->post_types )
-			&& $this->post_type->has_archive;
+			&& in_array( $this->post_type, $this->post_types );
 	}
 
 	/**
@@ -72,6 +74,6 @@ class Post_Type_Archive extends \Syllables\Template\Loader {
 	 * @codeCoverageIgnore
 	 */
 	protected function _templates() {
-		return array( "{$this->base_path}archive-{$this->post_type->name}.php" );
+		return array( "{$this->base_path}archive-{$this->post_type}.php" );
 	}
 }

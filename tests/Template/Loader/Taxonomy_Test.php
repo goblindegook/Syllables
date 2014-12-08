@@ -10,42 +10,28 @@ use Syllables\Template\Loader;
 class Taxonomy_Test extends TestCase {
 
 	/**
-	 * Set up tests.
-	 */
-	public function setUp() {
-		parent::setUp();
-
-		$this->_mockQuery( static::QUERY_TAXONOMY );
-	}
-
-	/**
-	 * @covers \Syllables\Template\Loader::filter
-	 */
-	public function test_filter_template_not_found() {
-		$loader = new Loader\Taxonomy( $this->base_path, array( 'file_not_found' ) );
-
-		$this->mock_object->taxonomy = 'file_not_found';
-		$this->mock_object->slug     = 'term';
-
-		$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
-			'Does not change the template if the template file is not found.' );
-	}
-
-	/**
+	 * @param integer $query    The query type.
+	 * @param string  $taxonomy The queried taxonomy.
+	 * @param string  $slug     The queried term slug.
+	 * @param string  $expected The template expected to load.
+	 *
 	 * @covers \Syllables\Template\Loader::filter
 	 *
 	 * @dataProvider filter_provider
 	 */
-	public function test_filter( $taxonomy, $invalid_slug, $slug, $expected ) {
+	public function test_filter( $query, $taxonomy, $slug, $expected ) {
+		$this->_mockQuery( $query );
+
 		$loader = new Loader\Taxonomy( $this->base_path, array( $taxonomy ) );
 
-		$this->mock_object->taxonomy = $taxonomy;
-		$this->mock_object->slug     = $invalid_slug;
+		$this->queried_object->taxonomy = $taxonomy;
+		$this->queried_object->slug     = $slug;
 
-		$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
-			'Does not change the template if custom template not found.' );
-
-		$this->mock_object->slug = $slug;
+		if ( empty( $expected ) ) {
+			$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
+				'Does not change the template if custom template not found.' );
+			return;
+		}
 
 		$this->assertLoaderFilterChangesTemplate( $loader, $expected,
 			"Changes the template to $expected." );
@@ -56,33 +42,46 @@ class Taxonomy_Test extends TestCase {
 	 */
 	public function filter_provider() {
 		return array(
-			array( 'category', 'no-term', 'term', 'taxonomy-category-term.php' ),
-			array( 'post_tag', 'no-term', 'term', 'taxonomy-post_tag-term.php' ),
-			array( 'custom', 'no-term', 'term', 'taxonomy-custom-term.php' ),
+			array( static::QUERY_CATEGORY, 'category', 'term', 'taxonomy-category-term.php' ),
+			array( static::QUERY_CATEGORY, 'category', 'none', null ),
+
+			array( static::QUERY_POST_TAG, 'post_tag', 'term', 'taxonomy-post_tag-term.php' ),
+			array( static::QUERY_POST_TAG, 'post_tag', 'none', null ),
+
+			array( static::QUERY_TAXONOMY, 'tax', 'term', 'taxonomy-tax-term.php' ),
+			array( static::QUERY_TAXONOMY, 'tax', 'none', 'taxonomy-tax.php' ),
+			array( static::QUERY_TAXONOMY, 'only', 'term', 'taxonomy-only-term.php' ),
+			array( static::QUERY_TAXONOMY, 'only', 'none', null ),
 		);
 	}
 
 	/**
 	 * @covers \Syllables\Template\Loader::filter
 	 */
-	public function test_filter_query_taxonomy() {
+	public function test_filter_query_no_match() {
+		$this->_mockQuery( static::QUERY_TAXONOMY );
+
 		$loader = new Loader\Taxonomy( $this->base_path, array( 'tax' ) );
 
-		$this->mock_object->taxonomy = 'tax';
-		$this->mock_object->slug     = 'no-term-template';
-
-		$this->assertLoaderFilterChangesTemplate( $loader, 'taxonomy-tax.php',
-			'Changes the template to taxonomy-tax.php.' );
-
-		$this->mock_object->slug = 'term';
-
-		$this->assertLoaderFilterChangesTemplate( $loader, 'taxonomy-tax-term.php',
-			'Changes the template to taxonomy-tax-term.php.' );
-
-		$this->mock_object->taxonomy = 'other-tax';
+		$this->queried_object->taxonomy = 'different-tax';
 
 		$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
 			'Does not change the template if taxonomy does not match.' );
+	}
+
+	/**
+	 * @covers \Syllables\Template\Loader::filter
+	 */
+	public function test_filter_template_not_found() {
+		$this->_mockQuery( static::QUERY_TAXONOMY );
+
+		$loader = new Loader\Taxonomy( $this->base_path, array( 'file_not_found' ) );
+
+		$this->queried_object->taxonomy = 'file_not_found';
+		$this->queried_object->slug     = 'term';
+
+		$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
+			'Does not change the template if the template file is not found.' );
 	}
 
 }

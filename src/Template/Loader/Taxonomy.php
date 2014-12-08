@@ -19,10 +19,16 @@ class Taxonomy extends \Syllables\Template\Loader {
 	protected $taxonomies = array();
 
 	/**
-	 * Queried term.
-	 * @var object
+	 * Queried taxonomy.
+	 * @var string
 	 */
-	protected $term;
+	protected $taxonomy = '';
+
+	/**
+	 * Queried term.
+	 * @var string
+	 */
+	protected $term = '';
 
 	/**
 	 * Custom template loader.
@@ -45,7 +51,12 @@ class Taxonomy extends \Syllables\Template\Loader {
 	 * @codeCoverageIgnore
 	 */
 	protected function _prepare_filter() {
-		$this->term = \get_queried_object();
+		$term           = \get_queried_object();
+
+		if ( ! empty( $term->slug ) && ! empty( $term->taxonomy ) ) {
+			$this->term     = $term->slug;
+			$this->taxonomy = $term->taxonomy;
+		}
 	}
 
 	/**
@@ -61,8 +72,8 @@ class Taxonomy extends \Syllables\Template\Loader {
 	 */
 	protected function _should_load_template() {
 		return ( \is_tax() || \is_category() || \is_tag() )
-			&& ! empty( $this->term->slug )
-			&& in_array( $this->term->taxonomy, $this->taxonomies );
+			&& ! empty( $this->term )
+			&& in_array( $this->taxonomy, $this->taxonomies );
 	}
 
 	/**
@@ -74,8 +85,8 @@ class Taxonomy extends \Syllables\Template\Loader {
 	 */
 	protected function _templates() {
 		return array(
-			"{$this->base_path}taxonomy-{$this->term->taxonomy}-{$this->term->slug}.php",
-			"{$this->base_path}taxonomy-{$this->term->taxonomy}.php",
+			"{$this->base_path}taxonomy-{$this->taxonomy}-{$this->term}.php",
+			"{$this->base_path}taxonomy-{$this->taxonomy}.php",
 		);
 	}
 }

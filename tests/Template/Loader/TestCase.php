@@ -34,7 +34,7 @@ class TestCase extends \WP_Mock\Tools\TestCase {
 	 * Queried object mock.
 	 * @var object
 	 */
-	protected $mock_object = null;
+	protected $queried_object = null;
 
 	/**
 	 * Setup a test method.
@@ -46,24 +46,15 @@ class TestCase extends \WP_Mock\Tools\TestCase {
 
 		$this->base_path   = __DIR__ . '/templates';
 
-		$this->mock_object = (object) array(
+		$this->queried_object = (object) array(
 			'has_archive' => false,                            // Post type archive
 			'name'        => null,                             // Post type slug
 			'post_type'   => (object) array( 'name' => null ), // Post type object
+			'post_name'   => null,                             // Post slug
 			'slug'        => null,                             // Slug
 			'taxonomy'    => null,                             // Taxonomy term
 			'term'        => null,                             // Taxonomy slug
 		);
-	}
-
-	/**
-	 * Clean up after a test method.
-	 */
-	public function tearDown() {
-		parent::tearDown();
-
-		$this->base_path   = null;
-		$this->mock_object = null;
 	}
 
 	/**
@@ -90,12 +81,12 @@ class TestCase extends \WP_Mock\Tools\TestCase {
 	/**
 	 * Mocks a global taxonomy query.
 	 *
-	 * @param integer $query  Query type.
+	 * @param integer|null $query Query type.
 	 */
 	protected function _mockQuery( $query = null ) {
 		$this->_mockQueryFunctionReturns( array(
-			'get_queried_object'   => $this->mock_object,
-			'get_post_type_object' => $this->mock_object->post_type,
+			'get_queried_object'   => $this->queried_object,
+			'get_post_type_object' => $this->queried_object->post_type,
 			'is_category'          => $query === static::QUERY_CATEGORY,
 			'is_post_type_archive' => $query === static::QUERY_POST_TYPE_ARCHIVE,
 			'is_single'            => $query === static::QUERY_SINGLE,
