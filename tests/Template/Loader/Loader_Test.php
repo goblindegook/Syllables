@@ -7,35 +7,16 @@ use Syllables\Template\Loader;
 class Loader_Test extends TestCase {
 
 	/**
-	 * Template loader instances to check.
-	 * @var array
-	 */
-	public $loaders;
-
-	/**
-	 * Set up tests.
-	 */
-	public function setUp() {
-		parent::setUp();
-
-		$this->loaders = array(
-			new Loader\Post_Type_Archive( $this->base_path, array() ),
-			new Loader\Single( $this->base_path, array() ),
-			new Loader\Taxonomy( $this->base_path, array() ),
-		);
-	}
-
-	/**
 	 * Tests hooking the template loader to the WordPress template loading filters.
 	 *
 	 * @covers \Syllables\Template\Loader::ready
+	 *
+	 * @dataProvider provider_loader
 	 */
-	public function test_ready() {
-		foreach ( $this->loaders as $loader ) {
-			\WP_Mock::expectFilterAdded( 'template_include', array( $loader, 'filter' ) );
-			$loader->ready();
-			$this->assertHooksAdded();
-		}
+	public function test_ready( $loader ) {
+		\WP_Mock::expectFilterAdded( 'template_include', array( $loader, 'filter' ) );
+		$loader->ready();
+		$this->assertHooksAdded();
 	}
 
 	/**
@@ -43,28 +24,36 @@ class Loader_Test extends TestCase {
 	 * with a priority.
 	 *
 	 * @covers \Syllables\Template\Loader::ready
+	 *
+	 * @dataProvider provider_loader
 	 */
-	public function test_ready_priority() {
+	public function test_ready_priority( $loader ) {
 		$priority = rand( 11, 99 );
-
-		foreach ( $this->loaders as $loader ) {
-			\WP_Mock::expectFilterAdded( 'template_include', array( $loader, 'filter' ), $priority );
-			$loader->ready( $priority );
-			$this->assertHooksAdded();
-		}
+		\WP_Mock::expectFilterAdded( 'template_include', array( $loader, 'filter' ), $priority );
+		$loader->ready( $priority );
+		$this->assertHooksAdded();
 	}
 
 	/**
 	 * @covers \Syllables\Template\Loader::filter
+	 *
+	 * @dataProvider provider_loader
 	 */
-	public function test_filter_query_none() {
-
+	public function test_filter_query_none( $loader ) {
 		$this->_mockQuery();
+		$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
+			'Does not change the template if taxonomy not requested.' );
+	}
 
-		foreach ( $this->loaders as $loader ) {
-			$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
-				'Does not change the template if taxonomy not requested.' );
-		}
+	/**
+	 * @return array Loader instances.
+	 */
+	public function provider_loader() {
+		return array(
+			array( new Loader\Post_Type_Archive( $this->base_path, array() ) ),
+			array( new Loader\Single( $this->base_path, array() ) ),
+			array( new Loader\Taxonomy( $this->base_path, array() ) ),
+		);
 	}
 
 }
