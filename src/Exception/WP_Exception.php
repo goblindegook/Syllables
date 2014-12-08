@@ -56,19 +56,20 @@ class WP_Exception extends \Exception {
 	 * @codeCoverageIgnore
 	 */
 	public function __construct( $message = '', $code = '', $previous = null ) {
-		$exception   = $previous;
-		$is_wp_error = $previous instanceof \WP_Error;
+		$exception = $previous;
+		$wp_error  = null;
 
-		if ( $is_wp_error ) {
+		if ( $previous instanceof \WP_Error ) {
 			$code      = $previous->get_error_code();
 			$message   = $previous->get_error_message( $code );
+			$wp_error  = $previous;
 			$exception = null;
 		}
 
 		parent::__construct( $message, null, $exception );
 
 		$this->code     = $code;
-		$this->wp_error = $is_wp_error ? $previous : null;
+		$this->wp_error = $wp_error;
 	}
 
 	/**
