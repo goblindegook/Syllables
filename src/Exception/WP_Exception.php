@@ -52,6 +52,8 @@ class WP_Exception extends \Exception {
 	 * @uses \WP_Error
 	 * @uses \WP_Error::get_error_code()
 	 * @uses \WP_Error::get_error_message()
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function __construct( $message = '', $code = '', $previous = null ) {
 		$exception   = $previous;

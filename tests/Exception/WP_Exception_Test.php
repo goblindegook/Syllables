@@ -27,7 +27,6 @@ class WP_Exception_Test extends TestCase {
 	/**
 	 * Checks that `\WP_Error` objects are correctly passed inside `WP_Exception`.
 	 *
-	 * @covers ::__construct
 	 * @covers ::get_wp_error
 	 *
 	 * @uses \WP_Error
@@ -64,7 +63,6 @@ class WP_Exception_Test extends TestCase {
 	/**
 	 * Checks that new `\WP_Error` objects can be created from a `WP_Exception`.
 	 *
-	 * @covers ::__construct
 	 * @covers ::get_wp_error
 	 *
 	 * @uses \WP_Error

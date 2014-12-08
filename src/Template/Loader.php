@@ -24,6 +24,8 @@ abstract class Loader {
 	 * @param string $base_path  Base path for the template files.
 	 *
 	 * @uses trailingslashit()
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function __construct( $base_path ) {
 		$this->base_path = trailingslashit( $base_path );
@@ -63,6 +65,8 @@ abstract class Loader {
 	 *
 	 * @param  string $fallback Fallback template (defaults to empty).
 	 * @return string           Valid template or empty string.
+	 *
+	 * @codeCoverageIgnore
 	 */
 	protected function _get_template( $fallback = '' ) {
 		$templates = $this->_templates();

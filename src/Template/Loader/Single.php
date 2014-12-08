@@ -17,6 +17,8 @@ class Single extends Post_Type_Archive {
 	 *
 	 * @uses \get_queried_object()
 	 * @uses \get_post_type_object()
+	 *
+	 * @codeCoverageIgnore
 	 */
 	protected function _prepare_filter() {
 		$post = \get_queried_object();
@@ -32,6 +34,8 @@ class Single extends Post_Type_Archive {
 	 * @return boolean Whether a custom template should be loaded.
 	 *
 	 * @uses \is_single()
+	 *
+	 * @codeCoverageIgnore
 	 */
 	protected function _should_load_template() {
 		return \is_single()
@@ -43,6 +47,8 @@ class Single extends Post_Type_Archive {
 	 * Returns a list of template file paths that match the request.
 	 *
 	 * @return string[] List with the full path for every valid template that matches the request.
+	 *
+	 * @codeCoverageIgnore
 	 */
 	protected function _templates() {
 		return array( "{$this->base_path}single-{$this->post_type->name}.php" );

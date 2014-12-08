@@ -7,10 +7,6 @@ var gulp        = require('gulp'),
     gutil       = require('gulp-util'),
     $           = require('gulp-load-plugins')();
 
-function _onError (error) {
-  gutil.log(gutil.colors.red(error.message));
-}
-
 /**
  * gulp build:phpunit
  */

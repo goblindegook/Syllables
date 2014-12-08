@@ -28,11 +28,7 @@ class Loader_Test extends TestCase {
 	/**
 	 * Tests hooking the template loader to the WordPress template loading filters.
 	 *
-	 * @covers \Syllables\Template\Loader::__construct
 	 * @covers \Syllables\Template\Loader::ready
-	 * @covers \Syllables\Template\Loader\Post_Type_Archive::__construct
-	 * @covers \Syllables\Template\Loader\Single::__construct
-	 * @covers \Syllables\Template\Loader\Taxonomy::__construct
 	 */
 	public function test_ready() {
 		foreach ( $this->loaders as $loader ) {
@@ -46,11 +42,7 @@ class Loader_Test extends TestCase {
 	 * Tests hooking the template loader to the WordPress template loading filters
 	 * with a priority.
 	 *
-	 * @covers \Syllables\Template\Loader::__construct
 	 * @covers \Syllables\Template\Loader::ready
-	 * @covers \Syllables\Template\Loader\Post_Type_Archive::__construct
-	 * @covers \Syllables\Template\Loader\Single::__construct
-	 * @covers \Syllables\Template\Loader\Taxonomy::__construct
 	 */
 	public function test_ready_priority() {
 		$priority = rand( 11, 99 );
@@ -64,12 +56,6 @@ class Loader_Test extends TestCase {
 
 	/**
 	 * @covers \Syllables\Template\Loader::filter
-	 * @covers \Syllables\Template\Loader\Post_Type_Archive::_prepare_filter
-	 * @covers \Syllables\Template\Loader\Post_Type_Archive::_should_load_template
-	 * @covers \Syllables\Template\Loader\Single::_prepare_filter
-	 * @covers \Syllables\Template\Loader\Single::_should_load_template
-	 * @covers \Syllables\Template\Loader\Taxonomy::_prepare_filter
-	 * @covers \Syllables\Template\Loader\Taxonomy::_should_load_template
 	 */
 	public function test_filter_query_none() {
 

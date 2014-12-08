@@ -6,6 +6,7 @@ node_modules/*
 
 # phpunit
 coverage.clover
+coverage.xml
 
 # phpdocumentor
 /docs/*

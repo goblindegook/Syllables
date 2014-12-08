@@ -17,6 +17,11 @@ if ( ! class_exists( 'WP_Error' ) ) {
 		 */
 		protected $error = array();
 
+		/**
+		 * @param string     $code
+		 * @param string     $message
+		 * @param mixed|null $data
+		 */
 		public function __construct( $code, $message = '', $data = null ) {
 			$this->code = $code;
 

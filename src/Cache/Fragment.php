@@ -66,6 +66,8 @@ class Fragment {
 	 *
 	 * @param string  $key     Key used to uniquely reference cached data.
 	 * @param integer $expires Cache expiration or TTL, in seconds.
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function __construct( $key, $expires = 0 ) {
 		$this->key     = $key;
@@ -79,6 +81,8 @@ class Fragment {
 	 * @return boolean Whether content was found in the cache.
 	 *
 	 * @uses \wp_cache_get()
+	 *
+	 * @codeCoverageIgnore
 	 */
 	protected function _output() {
 		$output = \wp_cache_get( $this->key, $this->group );
@@ -97,12 +101,23 @@ class Fragment {
 	 * Stores the rendered snippet in the object cache.
 	 *
 	 * @uses \wp_cache_add()
+	 *
+	 * @codeCoverageIgnore
 	 */
 	protected function _store() {
 		// Flushes the buffers
 		$output = ob_get_flush();
 
 		\wp_cache_add( $this->key, $output, $this->group, $this->expires );
+	}
+
+	/**
+	 * Flushes the fragment cache.
+	 *
+	 * @uses \wp_cache_delete()
+	 */
+	public function flush() {
+		\wp_cache_delete( $this->key, $this->group );
 	}
 
 	/**

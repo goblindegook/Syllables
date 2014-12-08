@@ -54,11 +54,8 @@ class Fragment_Test extends TestCase {
 
 	/**
 	 * @covers ::cache
-	 * @covers ::__construct
-	 * @covers ::_output
-	 * @covers ::_store
 	 */
-	public function test_cache_fresh() {
+	public function test_cache_add() {
 		$expected = microtime();
 
 		\WP_Mock::wpFunction( 'wp_cache_get', array(
@@ -83,10 +80,8 @@ class Fragment_Test extends TestCase {
 
 	/**
 	 * @covers ::cache
-	 * @covers ::__construct
-	 * @covers ::_output
 	 */
-	public function test_cache_primed() {
+	public function test_cache_get() {
 		$expected = microtime();
 
 		\WP_Mock::wpFunction( 'wp_cache_get', array(
@@ -110,20 +105,18 @@ class Fragment_Test extends TestCase {
 	 * Caching and returning the value 0 should not be interpreted as a cache miss.
 	 *
 	 * @covers ::cache
-	 * @covers ::__construct
-	 * @covers ::_output
 	 */
-	public function test_cache_zero() {
+	public function test_cache_get_zero() {
 		\WP_Mock::wpFunction( 'wp_cache_get', array( 'times'  => 1, 'return' => '0' ) );
 		\WP_Mock::wpFunction( 'wp_cache_add', array( 'times' => 0 ) );
 
 		$this->expectOutputString( '0' );
 
 		$this->fragment->cache( function () {
-			echo 'caching the value 0 should not be considered a miss';
+			echo 'test-cache-zero';
 		});
 
-		$this->assertConditionsMet();
+		$this->assertConditionsMet( 'Caching the value 0 should not be considered a miss.' );
 	}
 
 	/**
@@ -131,20 +124,32 @@ class Fragment_Test extends TestCase {
 	 * miss.
 	 *
 	 * @covers ::cache
-	 * @covers ::__construct
-	 * @covers ::_output
 	 */
-	public function test_cache_empty() {
+	public function test_cache_get_empty_string() {
 		\WP_Mock::wpFunction( 'wp_cache_get', array( 'times'  => 1, 'return' => '' ) );
 		\WP_Mock::wpFunction( 'wp_cache_add', array( 'times' => 0 ) );
 
 		$this->expectOutputString( '' );
 
 		$this->fragment->cache( function () {
-			echo 'caching an empty string should not be considered a miss';
+			echo 'test-cache-empty-string';
 		});
 
-		$this->assertConditionsMet();
+		$this->assertConditionsMet( 'Caching an empty string should not be considered a miss.' );
+	}
+
+	/**
+	 * @covers ::flush
+	 */
+	public function test_cache_delete() {
+		\WP_Mock::wpFunction( 'wp_cache_delete', array(
+			'times'  => 1,
+			'args'   => array( $this->cache_key, $this->cache_group ),
+		) );
+
+		$this->fragment->flush();
+
+		$this->assertConditionsMet( 'Flushing should delete the fragment cache.' );
 	}
 
 }

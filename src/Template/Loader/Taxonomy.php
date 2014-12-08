@@ -29,6 +29,8 @@ class Taxonomy extends \Syllables\Template\Loader {
 	 *
 	 * @param string[] $taxonomies Taxonomies whose templates should be overriden.
 	 * @param string   $base_path  Base path for the template files.
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function __construct( $base_path, $taxonomies ) {
 		parent::__construct( $base_path );
@@ -39,6 +41,8 @@ class Taxonomy extends \Syllables\Template\Loader {
 	 * Prepares the object when the filter is applied.
 	 *
 	 * @uses \get_queried_object()
+	 *
+	 * @codeCoverageIgnore
 	 */
 	protected function _prepare_filter() {
 		$this->term = \get_queried_object();
@@ -52,6 +56,8 @@ class Taxonomy extends \Syllables\Template\Loader {
 	 * @uses \is_category()
 	 * @uses \is_tag()
 	 * @uses \is_tax()
+	 *
+	 * @codeCoverageIgnore
 	 */
 	protected function _should_load_template() {
 		return ( \is_tax() || \is_category() || \is_tag() )
@@ -63,6 +69,8 @@ class Taxonomy extends \Syllables\Template\Loader {
 	 * Returns a list of template file paths that match the request.
 	 *
 	 * @return string[] List with the full path for every valid template that matches the request.
+	 *
+	 * @codeCoverageIgnore
 	 */
 	protected function _templates() {
 		return array(
