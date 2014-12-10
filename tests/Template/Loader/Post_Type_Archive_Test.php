@@ -35,7 +35,7 @@ class Post_Type_Archive_Test extends TestCase {
 		$this->assertLoaderFilterChangesTemplate( $loader, 'archive-post_type.php',
 			'Changes the template to single-type.php.' );
 
-		$this->queried_object->name        = 'something_else';
+		$this->queried_object->name        = 'different_post_type';
 		$this->queried_object->has_archive = true;
 
 		$this->assertLoaderFilterDoesNotChangeTemplate( $loader,

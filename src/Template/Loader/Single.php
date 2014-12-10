@@ -16,7 +16,7 @@ class Single extends Post_Type_Archive {
 	 * Queried post slug.
 	 * @var string
 	 */
-	protected $slug;
+	protected $slug = '';
 
 	/**
 	 * Prepares the object when the filter is applied.

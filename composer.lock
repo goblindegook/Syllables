@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "85e4508510428f9ccf20b6f8eda42b36",
+    "hash": "1746eeea3c51719ab517709f3b243bef",
     "packages": [
         {
             "name": "monolog/monolog",
@@ -123,12 +123,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/10up/wp_mock.git",
-                "reference": "f816f8019121fe19db93e6729952b3f8584c1135"
+                "reference": "3529a7bcc79d196b2850d15b92b94153b0b871a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/10up/wp_mock/zipball/f816f8019121fe19db93e6729952b3f8584c1135",
-                "reference": "f816f8019121fe19db93e6729952b3f8584c1135",
+                "url": "https://api.github.com/repos/10up/wp_mock/zipball/3529a7bcc79d196b2850d15b92b94153b0b871a4",
+                "reference": "3529a7bcc79d196b2850d15b92b94153b0b871a4",
                 "shasum": ""
             },
             "require": {
@@ -153,7 +153,7 @@
                 "GPL-2.0+"
             ],
             "description": "A mocking library to take the pain out of unit testing for WordPress",
-            "time": "2014-07-11 22:22:48"
+            "time": "2014-12-09 18:30:15"
         },
         {
             "name": "andrewsville/php-token-reflection",
