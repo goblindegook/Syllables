@@ -13,7 +13,7 @@ class Loader_Test extends TestCase {
 	 *
 	 * @dataProvider loader_provider
 	 */
-	public function test_ready( $loader ) {
+	public function test_ready( Loader $loader ) {
 		\WP_Mock::expectFilterAdded( 'template_include', array( $loader, 'filter' ) );
 		$loader->ready();
 		$this->assertHooksAdded();
@@ -27,7 +27,7 @@ class Loader_Test extends TestCase {
 	 *
 	 * @dataProvider loader_provider
 	 */
-	public function test_ready_priority( $loader ) {
+	public function test_ready_priority( Loader $loader ) {
 		$priority = rand( 11, 99 );
 		\WP_Mock::expectFilterAdded( 'template_include', array( $loader, 'filter' ), $priority );
 		$loader->ready( $priority );
@@ -41,7 +41,7 @@ class Loader_Test extends TestCase {
 	 *
 	 * @dataProvider loader_provider
 	 */
-	public function test_filter_query_none( $loader ) {
+	public function test_filter_query_none( Loader $loader ) {
 		$this->_mockQuery();
 		$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
 			'Does not change the template if taxonomy not requested.' );
