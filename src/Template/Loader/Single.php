@@ -10,13 +10,38 @@ namespace Syllables\Template\Loader;
  *
  * @since 0.1.0
  */
-class Single extends Post_Type_Archive {
+class Single extends \Syllables\Template\Loader {
+
+	/**
+	* Post types whose templates should be overridden.
+	* @var string[]
+	*/
+	protected $post_types = array();
 
 	/**
 	 * Queried post slug.
 	 * @var string
 	 */
 	protected $slug = '';
+
+	/**
+	* Queried post type slug.
+	* @var string
+	*/
+	protected $post_type = '';
+
+	/**
+	* Custom template loader.
+	*
+	* @param string[] $post_types Post types whose templates should be overriden.
+	* @param string   $base_path  Base path for the template files.
+	*
+	* @codeCoverageIgnore
+	*/
+	public function __construct( $base_path, $post_types ) {
+		parent::__construct( $base_path );
+		$this->post_types = (array) $post_types;
+	}
 
 	/**
 	 * Prepares the object when the filter is applied.

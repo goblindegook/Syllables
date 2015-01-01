@@ -1,121 +1,11 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
-    "hash": "1746eeea3c51719ab517709f3b243bef",
-    "packages": [
-        {
-            "name": "monolog/monolog",
-            "version": "1.11.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "ec3961874c43840e96da3a8a1ed20d8c73d7e5aa"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/ec3961874c43840e96da3a8a1ed20d8c73d7e5aa",
-                "reference": "ec3961874c43840e96da3a8a1ed20d8c73d7e5aa",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0",
-                "psr/log": "~1.0"
-            },
-            "provide": {
-                "psr/log-implementation": "1.0.0"
-            },
-            "require-dev": {
-                "aws/aws-sdk-php": "~2.4, >2.4.8",
-                "doctrine/couchdb": "~1.0@dev",
-                "graylog2/gelf-php": "~1.0",
-                "phpunit/phpunit": "~3.7.0",
-                "raven/raven": "~0.5",
-                "ruflin/elastica": "0.90.*",
-                "videlalvaro/php-amqplib": "~2.4"
-            },
-            "suggest": {
-                "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
-                "doctrine/couchdb": "Allow sending log messages to a CouchDB server",
-                "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
-                "ext-mongo": "Allow sending log messages to a MongoDB server",
-                "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
-                "raven/raven": "Allow sending log messages to a Sentry server",
-                "rollbar/rollbar": "Allow sending log messages to Rollbar",
-                "ruflin/elastica": "Allow sending log messages to an Elastic Search server",
-                "videlalvaro/php-amqplib": "Allow sending log messages to an AMQP server using php-amqplib"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.11.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Monolog\\": "src/Monolog"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jordi Boggiano",
-                    "email": "j.boggiano@seld.be",
-                    "homepage": "http://seld.be"
-                }
-            ],
-            "description": "Sends your logs to files, sockets, inboxes, databases and various web services",
-            "homepage": "http://github.com/Seldaek/monolog",
-            "keywords": [
-                "log",
-                "logging",
-                "psr-3"
-            ],
-            "time": "2014-09-30 13:30:58"
-        },
-        {
-            "name": "psr/log",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/log.git",
-                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
-                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Psr\\Log\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
-                }
-            ],
-            "description": "Common interface for logging libraries",
-            "keywords": [
-                "log",
-                "psr",
-                "psr-3"
-            ],
-            "time": "2012-12-21 11:40:51"
-        }
-    ],
+    "hash": "4987249155a239b785f092f994752a07",
+    "packages": [],
     "packages-dev": [
         {
             "name": "10up/wp_mock",
@@ -245,48 +135,42 @@
         },
         {
             "name": "apigen/apigen",
-            "version": "v4.0.0-RC4",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apigen/apigen.git",
-                "reference": "5d03ad3caeabce9f14607ac324ff808752d6fc17"
+                "reference": "97706b4defdfc8d4b5ff99fa0daa04cb22003cf6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apigen/apigen/zipball/5d03ad3caeabce9f14607ac324ff808752d6fc17",
-                "reference": "5d03ad3caeabce9f14607ac324ff808752d6fc17",
+                "url": "https://api.github.com/repos/apigen/apigen/zipball/97706b4defdfc8d4b5ff99fa0daa04cb22003cf6",
+                "reference": "97706b4defdfc8d4b5ff99fa0daa04cb22003cf6",
                 "shasum": ""
             },
             "require": {
                 "andrewsville/php-token-reflection": "~1.4",
-                "ext-iconv": "*",
-                "ext-json": "*",
-                "ext-mbstring": "*",
-                "ext-tokenizer": "*",
-                "kdyby/console": "~2.0",
+                "herrera-io/phar-update": "~2.0",
                 "kdyby/events": "~2.0",
                 "kukulich/fshl": "~2.1",
                 "latte/latte": "~2.2",
                 "michelf/php-markdown": "~1.4",
+                "nette/application": "~2.2",
                 "nette/bootstrap": "~2.2",
                 "nette/di": "~2.2",
                 "nette/mail": "~2.2",
+                "nette/neon": "~2.2",
                 "nette/robot-loader": "~2.2",
                 "nette/safe-stream": "~2.2",
-                "php": ">=5.3.1",
+                "php": ">=5.4",
+                "symfony/console": "~2.6",
+                "symfony/options-resolver": "~2.6.1",
                 "tracy/tracy": "~2.2"
             },
             "require-dev": {
                 "jakub-onderka/php-parallel-lint": "~0.8",
-                "nette/tester": "~1.3",
-                "squizlabs/php_codesniffer": "2.0.0RC2",
-                "zenify/coding-standard": "~0.1"
-            },
-            "suggest": {
-                "ext-bz2": "*",
-                "ext-phar": "*",
-                "ext-zip": "*",
-                "ext-zlib": "*"
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.4",
+                "zenify/coding-standard": "~3.0"
             },
             "bin": [
                 "bin/apigen"
@@ -294,12 +178,12 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-develop": "4.0.0-dev"
+                    "dev-master": "4.0.0-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "ApiGen": "src/"
+                "psr-4": {
+                    "ApiGen\\": "src/ApiGen"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -336,7 +220,7 @@
                 "generator",
                 "phpdoc"
             ],
-            "time": "2014-11-09 19:08:29"
+            "time": "2014-12-30 06:07:38"
         },
         {
             "name": "doctrine/instantiator",
@@ -393,98 +277,254 @@
             "time": "2014-10-13 12:58:55"
         },
         {
-            "name": "kdyby/console",
-            "version": "v2.3.0",
+            "name": "herrera-io/json",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Kdyby/Console.git",
-                "reference": "e191401cb6feab836e519afd5777aa1bdab969ff"
+                "url": "https://github.com/herrera-io/php-json.git",
+                "reference": "60c696c9370a1e5136816ca557c17f82a6fa83f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Kdyby/Console/zipball/e191401cb6feab836e519afd5777aa1bdab969ff",
-                "reference": "e191401cb6feab836e519afd5777aa1bdab969ff",
+                "url": "https://api.github.com/repos/herrera-io/php-json/zipball/60c696c9370a1e5136816ca557c17f82a6fa83f1",
+                "reference": "60c696c9370a1e5136816ca557c17f82a6fa83f1",
                 "shasum": ""
             },
             "require": {
-                "nette/application": "~2.2@dev",
-                "nette/di": "~2.2@dev",
-                "nette/http": "~2.2@dev",
-                "symfony/console": "~2.5"
+                "ext-json": "*",
+                "justinrainbow/json-schema": ">=1.0,<2.0-dev",
+                "php": ">=5.3.3",
+                "seld/jsonlint": ">=1.0,<2.0-dev"
             },
             "require-dev": {
-                "jakub-onderka/php-parallel-lint": "~0.6",
-                "kdyby/events": "@dev",
-                "latte/latte": "~2.2@dev",
-                "nette/bootstrap": "~2.2@dev",
-                "nette/caching": "~2.2@dev",
-                "nette/component-model": "~2.2@dev",
-                "nette/database": "~2.2@dev",
-                "nette/finder": "~2.2@dev",
-                "nette/forms": "~2.2@dev",
-                "nette/mail": "~2.2@dev",
-                "nette/neon": "~2.2@dev",
-                "nette/nette": "~2.2@dev",
-                "nette/php-generator": "~2.2@dev",
-                "nette/reflection": "~2.2@dev",
-                "nette/robot-loader": "~2.2@dev",
-                "nette/safe-stream": "~2.2@dev",
-                "nette/security": "~2.2@dev",
-                "nette/tester": "@dev",
-                "nette/tokenizer": "~2.2@dev",
-                "nette/utils": "~2.2@dev",
-                "symfony/event-dispatcher": "~2.4",
-                "tracy/tracy": "~2.2@dev"
+                "herrera-io/phpunit-test-case": "1.*",
+                "mikey179/vfsstream": "1.1.0",
+                "phpunit/phpunit": "3.7.*"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3-dev"
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/lib/json_version.php"
+                ],
+                "psr-0": {
+                    "Herrera\\Json": "src/lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Herrera",
+                    "email": "kevin@herrera.io",
+                    "homepage": "http://kevin.herrera.io/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A library for simplifying JSON linting and validation.",
+            "homepage": "http://herrera-io.github.com/php-json",
+            "keywords": [
+                "json",
+                "lint",
+                "schema",
+                "validate"
+            ],
+            "time": "2013-10-30 16:51:34"
+        },
+        {
+            "name": "herrera-io/phar-update",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/herrera-io/php-phar-update.git",
+                "reference": "15643c90d3d43620a4f45c910e6afb7a0ad4b488"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/herrera-io/php-phar-update/zipball/15643c90d3d43620a4f45c910e6afb7a0ad4b488",
+                "reference": "15643c90d3d43620a4f45c910e6afb7a0ad4b488",
+                "shasum": ""
+            },
+            "require": {
+                "herrera-io/json": "1.*",
+                "herrera-io/version": "1.*",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "herrera-io/phpunit-test-case": "1.*",
+                "mikey179/vfsstream": "1.1.0",
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/lib/constants.php"
+                ],
+                "psr-0": {
+                    "Herrera\\Phar\\Update": "src/lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Herrera",
+                    "email": "kevin@herrera.io",
+                    "homepage": "http://kevin.herrera.io/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A library for self-updating Phars.",
+            "homepage": "http://herrera-io.github.com/php-phar-update",
+            "keywords": [
+                "phar",
+                "update"
+            ],
+            "time": "2013-11-09 17:13:13"
+        },
+        {
+            "name": "herrera-io/version",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/herrera-io/php-version.git",
+                "reference": "d39d9642b92a04d8b8a28b871b797a35a2545e85"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/herrera-io/php-version/zipball/d39d9642b92a04d8b8a28b871b797a35a2545e85",
+                "reference": "d39d9642b92a04d8b8a28b871b797a35a2545e85",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "herrera-io/phpunit-test-case": "1.*",
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
                 }
             },
             "autoload": {
                 "psr-0": {
-                    "Kdyby\\Console\\": "src/"
-                },
-                "classmap": [
-                    "src/Kdyby/Console/CliPresenter.php",
-                    "src/Kdyby/Console/exceptions.php"
-                ]
+                    "Herrera\\Version": "src/lib"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD-3-Clause",
-                "GPL-2.0",
-                "GPL-3.0"
+                "MIT"
             ],
             "authors": [
                 {
-                    "name": "Filip Procházka",
-                    "email": "filip@prochazka.su",
-                    "homepage": "http://filip-prochazka.com"
+                    "name": "Kevin Herrera",
+                    "email": "kevin@herrera.io",
+                    "homepage": "http://kevin.herrera.io/",
+                    "role": "Developer"
                 }
             ],
-            "description": "Symfony Console integration for Kdyby components",
-            "homepage": "http://kdyby.org",
+            "description": "A library for creating, editing, and comparing semantic versioning numbers.",
+            "homepage": "http://github.com/herrera-io/php-version",
             "keywords": [
-                "console",
-                "kdyby",
-                "nette"
+                "semantic",
+                "version"
             ],
-            "time": "2014-07-27 15:00:37"
+            "time": "2014-05-27 05:29:25"
         },
         {
-            "name": "kdyby/events",
-            "version": "v2.2.0",
+            "name": "justinrainbow/json-schema",
+            "version": "1.3.7",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Kdyby/Events.git",
-                "reference": "11c3861c50221894c156a46ca305c32a76aaf9af"
+                "url": "https://github.com/justinrainbow/json-schema.git",
+                "reference": "87b54b460febed69726c781ab67462084e97a105"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Kdyby/Events/zipball/11c3861c50221894c156a46ca305c32a76aaf9af",
-                "reference": "11c3861c50221894c156a46ca305c32a76aaf9af",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/87b54b460febed69726c781ab67462084e97a105",
+                "reference": "87b54b460febed69726c781ab67462084e97a105",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "json-schema/json-schema-test-suite": "1.1.0",
+                "phpdocumentor/phpdocumentor": "~2",
+                "phpunit/phpunit": "~3.7"
+            },
+            "bin": [
+                "bin/validate-json"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "JsonSchema": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Bruno Prieto Reis",
+                    "email": "bruno.p.reis@gmail.com"
+                },
+                {
+                    "name": "Justin Rainbow",
+                    "email": "justin.rainbow@gmail.com"
+                },
+                {
+                    "name": "Igor Wiedler",
+                    "email": "igor@wiedler.ch"
+                },
+                {
+                    "name": "Robert Schönthal",
+                    "email": "seroscho@googlemail.com"
+                }
+            ],
+            "description": "A library to validate a json schema.",
+            "homepage": "https://github.com/justinrainbow/json-schema",
+            "keywords": [
+                "json",
+                "schema"
+            ],
+            "time": "2014-08-25 02:48:14"
+        },
+        {
+            "name": "kdyby/events",
+            "version": "v2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Kdyby/Events.git",
+                "reference": "fb4b90241791cf5eab75d2b23ad9f578dc863eb0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Kdyby/Events/zipball/fb4b90241791cf5eab75d2b23ad9f578dc863eb0",
+                "reference": "fb4b90241791cf5eab75d2b23ad9f578dc863eb0",
                 "shasum": ""
             },
             "require": {
@@ -492,13 +532,14 @@
                 "nette/utils": "~2.2@dev"
             },
             "require-dev": {
-                "jakub-onderka/php-parallel-lint": "~0.6",
+                "jakub-onderka/php-parallel-lint": "~0.7",
                 "latte/latte": "~2.2@dev",
                 "nette/application": "~2.2@dev",
                 "nette/bootstrap": "~2.2@dev",
                 "nette/caching": "~2.2@dev",
                 "nette/component-model": "~2.2@dev",
                 "nette/database": "~2.2@dev",
+                "nette/deprecated": "~2.2@dev",
                 "nette/finder": "~2.2@dev",
                 "nette/forms": "~2.2@dev",
                 "nette/http": "~2.2@dev",
@@ -551,7 +592,7 @@
                 "kdyby",
                 "nette"
             ],
-            "time": "2014-07-27 14:16:10"
+            "time": "2014-12-13 23:14:29"
         },
         {
             "name": "kukulich/fshl",
@@ -703,16 +744,16 @@
         },
         {
             "name": "mockery/mockery",
-            "version": "0.9.2",
+            "version": "0.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/padraic/mockery.git",
-                "reference": "95a4855380dc70176c51807c678fb3bd6198529a"
+                "reference": "686f85fa5b3b079cc0157d7cd3e9adb97f0b41e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padraic/mockery/zipball/95a4855380dc70176c51807c678fb3bd6198529a",
-                "reference": "95a4855380dc70176c51807c678fb3bd6198529a",
+                "url": "https://api.github.com/repos/padraic/mockery/zipball/686f85fa5b3b079cc0157d7cd3e9adb97f0b41e1",
+                "reference": "686f85fa5b3b079cc0157d7cd3e9adb97f0b41e1",
                 "shasum": ""
             },
             "require": {
@@ -765,7 +806,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2014-09-03 10:11:10"
+            "time": "2014-12-22 10:06:19"
         },
         {
             "name": "nette/application",
@@ -891,16 +932,16 @@
         },
         {
             "name": "nette/caching",
-            "version": "v2.2.2",
+            "version": "v2.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/caching.git",
-                "reference": "56ec8daeebbd780316a94759fc8a5a861adfa579"
+                "reference": "3076b1128f5811a8542e7d3e9290be1367fa3ec7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/caching/zipball/56ec8daeebbd780316a94759fc8a5a861adfa579",
-                "reference": "56ec8daeebbd780316a94759fc8a5a861adfa579",
+                "url": "https://api.github.com/repos/nette/caching/zipball/3076b1128f5811a8542e7d3e9290be1367fa3ec7",
+                "reference": "3076b1128f5811a8542e7d3e9290be1367fa3ec7",
                 "shasum": ""
             },
             "require": {
@@ -939,7 +980,7 @@
             ],
             "description": "Nette Caching Component",
             "homepage": "http://nette.org",
-            "time": "2014-10-15 20:28:19"
+            "time": "2014-12-21 21:54:36"
         },
         {
             "name": "nette/component-model",
@@ -1096,20 +1137,20 @@
         },
         {
             "name": "nette/http",
-            "version": "v2.2.4",
+            "version": "v2.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/http.git",
-                "reference": "e86342380c5e427f87000d7d104494fa336fbc12"
+                "reference": "5dcdedcab0f539503ee51ef2e95ef844fb5af034"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/http/zipball/e86342380c5e427f87000d7d104494fa336fbc12",
-                "reference": "e86342380c5e427f87000d7d104494fa336fbc12",
+                "url": "https://api.github.com/repos/nette/http/zipball/5dcdedcab0f539503ee51ef2e95ef844fb5af034",
+                "reference": "5dcdedcab0f539503ee51ef2e95ef844fb5af034",
                 "shasum": ""
             },
             "require": {
-                "nette/utils": "~2.2",
+                "nette/utils": "~2.2, >=2.2.2",
                 "php": ">=5.3.1"
             },
             "conflict": {
@@ -1145,7 +1186,7 @@
             ],
             "description": "Nette HTTP Component",
             "homepage": "http://nette.org",
-            "time": "2014-11-16 13:45:55"
+            "time": "2014-12-21 21:49:54"
         },
         {
             "name": "nette/mail",
@@ -1453,16 +1494,16 @@
         },
         {
             "name": "nette/security",
-            "version": "v2.2.1",
+            "version": "v2.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/security.git",
-                "reference": "72a0f78fee1a1ff54d233e8a4e8fb2236d68875f"
+                "reference": "9678d50769eba82a9e9621b19720152b14055b0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/security/zipball/72a0f78fee1a1ff54d233e8a4e8fb2236d68875f",
-                "reference": "72a0f78fee1a1ff54d233e8a4e8fb2236d68875f",
+                "url": "https://api.github.com/repos/nette/security/zipball/9678d50769eba82a9e9621b19720152b14055b0a",
+                "reference": "9678d50769eba82a9e9621b19720152b14055b0a",
                 "shasum": ""
             },
             "require": {
@@ -1499,20 +1540,20 @@
             ],
             "description": "Nette Security: Access Control Component",
             "homepage": "http://nette.org",
-            "time": "2014-11-05 02:05:01"
+            "time": "2014-12-14 17:53:13"
         },
         {
             "name": "nette/utils",
-            "version": "v2.2.3",
+            "version": "v2.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/utils.git",
-                "reference": "09161a4a6311ead542ce1f925b976c6525028e66"
+                "reference": "063460f08b9ca38b1609a15ed95d18bfaa6e3b90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/utils/zipball/09161a4a6311ead542ce1f925b976c6525028e66",
-                "reference": "09161a4a6311ead542ce1f925b976c6525028e66",
+                "url": "https://api.github.com/repos/nette/utils/zipball/063460f08b9ca38b1609a15ed95d18bfaa6e3b90",
+                "reference": "063460f08b9ca38b1609a15ed95d18bfaa6e3b90",
                 "shasum": ""
             },
             "require": {
@@ -1553,20 +1594,20 @@
             ],
             "description": "Nette Utility Classes",
             "homepage": "http://nette.org",
-            "time": "2014-10-26 23:12:20"
+            "time": "2014-12-30 09:55:38"
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "2.0.13",
+            "version": "2.0.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "0e7d2eec5554f869fa7a4ec2d21e4b37af943ea5"
+                "reference": "ca158276c1200cc27f5409a5e338486bc0b4fc94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/0e7d2eec5554f869fa7a4ec2d21e4b37af943ea5",
-                "reference": "0e7d2eec5554f869fa7a4ec2d21e4b37af943ea5",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/ca158276c1200cc27f5409a5e338486bc0b4fc94",
+                "reference": "ca158276c1200cc27f5409a5e338486bc0b4fc94",
                 "shasum": ""
             },
             "require": {
@@ -1618,7 +1659,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-12-03 06:41:44"
+            "time": "2014-12-26 13:28:33"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -1804,16 +1845,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.4.0",
+            "version": "4.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "bbe7bcb83b6ec1a9eaabbe1b70d4795027c53ee0"
+                "reference": "6a5e49a86ce5e33b8d0657abe145057fc513543a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/bbe7bcb83b6ec1a9eaabbe1b70d4795027c53ee0",
-                "reference": "bbe7bcb83b6ec1a9eaabbe1b70d4795027c53ee0",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6a5e49a86ce5e33b8d0657abe145057fc513543a",
+                "reference": "6a5e49a86ce5e33b8d0657abe145057fc513543a",
                 "shasum": ""
             },
             "require": {
@@ -1871,7 +1912,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-12-05 06:49:03"
+            "time": "2014-12-28 07:57:05"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -2212,16 +2253,16 @@
         },
         {
             "name": "sebastian/version",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/version.git",
-                "reference": "b6e1f0cf6b9e1ec409a0d3e2f2a5fb0998e36b43"
+                "reference": "a77d9123f8e809db3fbdea15038c27a95da4058b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/version/zipball/b6e1f0cf6b9e1ec409a0d3e2f2a5fb0998e36b43",
-                "reference": "b6e1f0cf6b9e1ec409a0d3e2f2a5fb0998e36b43",
+                "url": "https://api.github.com/repos/sebastianbergmann/version/zipball/a77d9123f8e809db3fbdea15038c27a95da4058b",
+                "reference": "a77d9123f8e809db3fbdea15038c27a95da4058b",
                 "shasum": ""
             },
             "type": "library",
@@ -2243,7 +2284,53 @@
             ],
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
-            "time": "2014-03-07 15:35:33"
+            "time": "2014-12-15 14:25:24"
+        },
+        {
+            "name": "seld/jsonlint",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Seldaek/jsonlint.git",
+                "reference": "a7bc2ec9520ad15382292591b617c43bdb1fec35"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Seldaek/jsonlint/zipball/a7bc2ec9520ad15382292591b617c43bdb1fec35",
+                "reference": "a7bc2ec9520ad15382292591b617c43bdb1fec35",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "bin": [
+                "bin/jsonlint"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Seld\\JsonLint\\": "src/Seld/JsonLint/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be",
+                    "homepage": "http://seld.be"
+                }
+            ],
+            "description": "JSON Linter",
+            "keywords": [
+                "json",
+                "linter",
+                "parser",
+                "validator"
+            ],
+            "time": "2014-09-05 15:36:20"
         },
         {
             "name": "symfony/console",
@@ -2303,6 +2390,58 @@
             "time": "2014-12-02 20:19:20"
         },
         {
+            "name": "symfony/options-resolver",
+            "version": "v2.6.1",
+            "target-dir": "Symfony/Component/OptionsResolver",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/OptionsResolver.git",
+                "reference": "007d41188680f7ea78afc2d9ffea18f4274146ca"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/OptionsResolver/zipball/007d41188680f7ea78afc2d9ffea18f4274146ca",
+                "reference": "007d41188680f7ea78afc2d9ffea18f4274146ca",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\OptionsResolver\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Symfony OptionsResolver Component",
+            "homepage": "http://symfony.com",
+            "keywords": [
+                "config",
+                "configuration",
+                "options"
+            ],
+            "time": "2014-11-03 09:04:37"
+        },
+        {
             "name": "symfony/yaml",
             "version": "v2.6.1",
             "target-dir": "Symfony/Component/Yaml",
@@ -2351,16 +2490,16 @@
         },
         {
             "name": "tracy/tracy",
-            "version": "v2.2.5",
+            "version": "v2.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "1a3c6c6f7cf3c4dd6b79a4b11152a1b6b78cc5ed"
+                "reference": "1233094e59830eb9d4406f8e187733d8cec8b416"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/1a3c6c6f7cf3c4dd6b79a4b11152a1b6b78cc5ed",
-                "reference": "1a3c6c6f7cf3c4dd6b79a4b11152a1b6b78cc5ed",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/1233094e59830eb9d4406f8e187733d8cec8b416",
+                "reference": "1233094e59830eb9d4406f8e187733d8cec8b416",
                 "shasum": ""
             },
             "require": {
@@ -2401,7 +2540,7 @@
                 "debugger",
                 "nette"
             ],
-            "time": "2014-11-15 17:22:04"
+            "time": "2014-12-30 01:16:35"
         }
     ],
     "aliases": [],
@@ -2411,6 +2550,7 @@
         "apigen/apigen": 20,
         "10up/wp_mock": 20
     },
+    "prefer-stable": false,
     "platform": {
         "php": ">=5.3.0"
     },

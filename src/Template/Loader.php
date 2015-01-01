@@ -68,7 +68,7 @@ abstract class Loader {
 	 *
 	 * @codeCoverageIgnore
 	 */
-	protected function _get_template( $fallback = '' ) {
+	private function _get_template( $fallback = '' ) {
 		$templates = $this->_templates();
 
 		foreach ( $templates as $template ) {
