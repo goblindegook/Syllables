@@ -6,48 +6,34 @@ Syllables are helper classes and functions for WordPress development.
 
 ## Installation
 
-### In your projects using Composer
-
-To install this library as a dependency in your project using [Composer](https://getcomposer.org/), run the following command to get the latest version:
+To install this library as a dependency in your WordPress project using [Composer](https://getcomposer.org/), run the following command to get the latest version:
 
 ```
 $ composer require goblindegook/syllables
 ```
 
-Besides downloading the required libraries, Composer also prepares an autoload file for you. So if this is your first time using Composer, you'll want to include this at the start of your plugin or theme:
-
-```php
-require 'vendor/autoload.php';
-```
-
-### As a standalone WordPress plugin
-
-Syllables is able to run like a regular WordPress plugin. Even though it doesn't do anything by itself, it does make its classes and functions available  so you don't have to include it as a dependency in every single one of your plugins or themes.
-
-Clone this repository into your install's _/wp-content/plugins_ directory, then install Syllable's own dependencies by running [Composer](https://getcomposer.org/):
+By default, composer will install Syllables as a Must-Use plugin in the _wp-content/mu-plugins_ directory. However, because WordPress doesn't look for must-use plugins in subfolders, you will also need to copy the _syllables-mu.php_ file into the parent directory.
 
 ```
-$ cd /path/to/wp-content/plugins
-$ git clone https://github.com/goblindegook/Syllables.git syllables
-$ cd syllables
-$ composer install
-```
-
-You can now log into the Dashboard, navigate to "Plugins" and activate "Syllables".
-
-### As a must-use WordPress plugin
-
-To prevent the plugin from being disabled and thus breaking your site, you may install it as a MU (must use) plugin. The process is similar to the above, except you clone this repository into the _/wp-content/mu-plugins_ directory.
-
-Because WordPress doesn't look for must-use plugins in subfolders, you will also need to copy the _syllables-mu.php_ file into the parent directory.
-
-```
-$ cd /path/to/wp-content/mu-plugins
-$ git clone https://github.com/goblindegook/Syllables.git syllables
-$ cd syllables
-$ composer install
+$ cd /path/to/wp-content/mu-plugins/syllables
 $ cp syllables-mu.php ..
 ```
+
+Even though Syllables is installed as a plugin, it doesn't do anything by itself, but it does make its classes and functions available so you don't have to include it as a dependency in every single one of your plugins or themes.
+
+### Install as a standard WordPress plugin
+
+To install Syllables as a standard plugin (which you can turn on or off from the administration panel), make sure your _composer.json_ file contains an `extra.installer-paths` section and that `goblindegook/syllables` is set to install in the correct directory:
+
+```
+    "extra": {
+        "installer-paths": {
+            "wp-content/plugins/syllables/": ["goblindegook/syllables"]
+        }
+    }
+```
+
+After running Composer to install your dependencies, you may log into the Dashboard, navigate to "Plugins" and activate "Syllables".
 
 ## Development builds
 
