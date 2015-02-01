@@ -15,4 +15,6 @@
  * Domain Path:       /languages
  */
 
-require_once 'syllables/vendor/autoload.php';
+if ( file_exists( 'syllables/syllables.php' ) ) {
+	require_once 'syllables/syllables.php';
+}
