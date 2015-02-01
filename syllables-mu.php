@@ -15,6 +15,4 @@
  * Domain Path:       /languages
  */
 
-if ( file_exists( 'syllables/syllables.php' ) ) {
-	require_once 'syllables/syllables.php';
-}
+include_once 'syllables/syllables.php';
