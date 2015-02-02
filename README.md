@@ -12,28 +12,31 @@ To install this library as a dependency in your WordPress project using [Compose
 $ composer require goblindegook/syllables
 ```
 
-By default, composer will install Syllables as a Must-Use plugin in the _wp-content/mu-plugins_ directory. However, because WordPress doesn't look for must-use plugins in subfolders, you will also need to copy the _syllables-mu.php_ file into the parent directory.
+By default, Composer will install Syllables as a plugin in the _wp-content/plugins/syllables_ directory. You may then sign into the Dashboard, navigate to "Plugins" and activate "Syllables".
+
+Even though Syllables exists as a plugin, it doesn't do anything by itself, but it does make its classes and functions available so you don't have to include it as a dependency in every single one of your plugins or themes.
+
+### Install as a must-use WordPress plugin
+
+To install Syllables as a must-use plugin (which cannot be turned off by users), make sure your site's _composer.json_ file contains an `extra.installer-paths` section and that `goblindegook/syllables` is set to install in the correct directory:
+
+```
+"extra": {
+    "installer-paths": {
+        "wp-content/mu-plugins/syllables/": ["goblindegook/syllables"]
+    }
+}
+```
+
+Running Composer to install your dependencies will place Syllables into the _wp-content/mu-plugins/syllables_ folder instead.
+
+Now, because WordPress doesn't look for must-use plugins in subfolders, you will also need to copy the _syllables-mu.php_ file provided into the parent directory.
 
 ```
 $ cd /path/to/wp-content/mu-plugins/syllables
 $ cp syllables-mu.php ..
 ```
 
-Even though Syllables is installed as a plugin, it doesn't do anything by itself, but it does make its classes and functions available so you don't have to include it as a dependency in every single one of your plugins or themes.
-
-### Install as a standard WordPress plugin
-
-To install Syllables as a standard plugin (which you can turn on or off from the administration panel), make sure your _composer.json_ file contains an `extra.installer-paths` section and that `goblindegook/syllables` is set to install in the correct directory:
-
-```
-    "extra": {
-        "installer-paths": {
-            "wp-content/plugins/syllables/": ["goblindegook/syllables"]
-        }
-    }
-```
-
-After running Composer to install your dependencies, you may log into the Dashboard, navigate to "Plugins" and activate "Syllables".
 
 ## Development builds
 
