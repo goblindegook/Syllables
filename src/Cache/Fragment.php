@@ -96,20 +96,6 @@ class Fragment {
 	}
 
 	/**
-	 * Stores the rendered snippet in the object cache.
-	 *
-	 * @uses \wp_cache_add()
-	 *
-	 * @codeCoverageIgnore
-	 */
-	private function _store() {
-		// Flushes the buffers
-		$output = ob_get_flush();
-
-		\wp_cache_add( $this->key, $output, $this->group, $this->expires );
-	}
-
-	/**
 	 * Outputs cached content, if available, otherwise begins capturing output
 	 * for caching.
 	 *
@@ -130,5 +116,19 @@ class Fragment {
 		ob_start();
 
 		return false;
+	}
+
+	/**
+	 * Stores the rendered snippet in the object cache.
+	 *
+	 * @uses \wp_cache_add()
+	 *
+	 * @codeCoverageIgnore
+	 */
+	private function _store() {
+		// Flushes the buffers
+		$output = ob_get_flush();
+
+		\wp_cache_add( $this->key, $output, $this->group, $this->expires );
 	}
 }

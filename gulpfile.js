@@ -42,6 +42,16 @@ gulp.task('phpunit', function () {
 });
 
 /**
+ * gulp phpunit:coverage
+ */
+gulp.task('phpunit:coverage', function () {
+  return gulp.src('tests/**/Test*.php')
+    .pipe($.phpunit(null, {
+      coverageHtml: 'coverage'
+    }));
+});
+
+/**
  * gulp apigen
  */
 gulp.task('apigen', function () {
