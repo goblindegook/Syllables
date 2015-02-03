@@ -47,19 +47,19 @@ class Fragment {
 	/**
 	 * Cache group.
 	 */
-	protected $group = 'syllables-cache-fragments';
+	private $group = 'syllables-cache-fragments';
 
 	/**
 	 * Cache key used to reference cached data.
 	 * @var string
 	 */
-	protected $key;
+	private $key;
 
 	/**
 	 * Cached data's time-to-live, in seconds.
 	 * @var integer
 	 */
-	protected $expires;
+	private $expires;
 
 	/**
 	 * Fragment cache constructor.
@@ -75,40 +75,15 @@ class Fragment {
 	}
 
 	/**
-	 * Outputs cached content, if available, otherwise begins capturing output
-	 * for caching.
+	 * Caches the output of a callable.
 	 *
-	 * @return boolean Whether content was found in the cache.
-	 *
-	 * @uses \wp_cache_get()
-	 *
-	 * @codeCoverageIgnore
+	 * @param callable|\Closure $callable Code whose output should be cached.
 	 */
-	protected function _output() {
-		$output = \wp_cache_get( $this->key, $this->group );
-
-		if ( $output !== false ) {
-			echo $output;
-			return true;
+	public function cache( $callable ) {
+		if ( ! $this->_output() ) {
+			call_user_func( $callable );
+			$this->_store();
 		}
-
-		ob_start();
-
-		return false;
-	}
-
-	/**
-	 * Stores the rendered snippet in the object cache.
-	 *
-	 * @uses \wp_cache_add()
-	 *
-	 * @codeCoverageIgnore
-	 */
-	protected function _store() {
-		// Flushes the buffers
-		$output = ob_get_flush();
-
-		\wp_cache_add( $this->key, $output, $this->group, $this->expires );
 	}
 
 	/**
@@ -121,14 +96,39 @@ class Fragment {
 	}
 
 	/**
-	 * Caches the output of a callable.
+	 * Stores the rendered snippet in the object cache.
 	 *
-	 * @param callable|\Closure $callable Code whose output should be cached.
+	 * @uses \wp_cache_add()
+	 *
+	 * @codeCoverageIgnore
 	 */
-	public function cache( $callable ) {
-		if ( ! $this->_output() ) {
-			call_user_func( $callable );
-			$this->_store();
+	private function _store() {
+		// Flushes the buffers
+		$output = ob_get_flush();
+
+		\wp_cache_add( $this->key, $output, $this->group, $this->expires );
+	}
+
+	/**
+	 * Outputs cached content, if available, otherwise begins capturing output
+	 * for caching.
+	 *
+	 * @return boolean Whether content was found in the cache.
+	 *
+	 * @uses \wp_cache_get()
+	 *
+	 * @codeCoverageIgnore
+	 */
+	private function _output() {
+		$output = \wp_cache_get( $this->key, $this->group );
+
+		if ( $output !== false ) {
+			echo $output;
+			return true;
 		}
+
+		ob_start();
+
+		return false;
 	}
 }

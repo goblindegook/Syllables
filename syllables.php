@@ -16,4 +16,7 @@
  */
 
 include_once 'vendor/autoload.php';
-include_once ABSPATH . '/vendor/autoload.php';
+
+if ( defined( 'ABSPATH' ) ) {
+	include_once ABSPATH . '/vendor/autoload.php';
+}
