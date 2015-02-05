@@ -15,8 +15,10 @@
  * Domain Path:       /languages
  */
 
-include_once 'vendor/autoload.php';
+if ( file_exists( 'vendor/autoload.php' ) ) {
+	require_once 'vendor/autoload.php';
+}
 
-if ( defined( 'ABSPATH' ) ) {
-	include_once ABSPATH . '/vendor/autoload.php';
+if ( defined( 'ABSPATH' ) && file_exists( ABSPATH . '/vendor/autoload.php' ) ) {
+	require_once ABSPATH . '/vendor/autoload.php';
 }
