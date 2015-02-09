@@ -4,12 +4,15 @@ namespace Syllables\Tests\Template\Loader;
 
 use Syllables\Template\Loader;
 
+/**
+ * @coversDefaultClass \Syllables\Template\Loader
+ */
 class Loader_Test extends TestCase {
 
 	/**
 	 * Tests hooking the template loader to the WordPress template loading filters.
 	 *
-	 * @covers \Syllables\Template\Loader::ready
+	 * @covers ::ready
 	 *
 	 * @dataProvider loader_provider
 	 */
@@ -23,7 +26,7 @@ class Loader_Test extends TestCase {
 	 * Tests hooking the template loader to the WordPress template loading filters
 	 * with a priority.
 	 *
-	 * @covers \Syllables\Template\Loader::ready
+	 * @covers ::ready
 	 *
 	 * @dataProvider loader_provider
 	 */
@@ -37,7 +40,7 @@ class Loader_Test extends TestCase {
 	/**
 	 * @param \Syllables\Template\Loader $loader Template loader instance.
 	 *
-	 * @covers \Syllables\Template\Loader::filter
+	 * @covers ::filter
 	 *
 	 * @dataProvider loader_provider
 	 */
