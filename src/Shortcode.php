@@ -78,16 +78,16 @@ class Shortcode {
 	 * @uses \apply_filters()
 	 */
 	public function render( $atts ) {
-		$output = call_user_func( $this->callback, $atts );
+		$content = call_user_func( $this->callback, $atts );
 
 		/**
-		 * Filters the shortcode output.
+		 * Filters the shortcode content.
 		 *
-		 * @param  string $output This shortcode's rendered output.
-		 * @param  array  $atts   The attributes used to invoke this shortcode.
-		 * @param  array  $tag    This shortcode tag.
-		 * @return string         This shortcode's filtered output.
+		 * @param  string $content This shortcode's rendered content.
+		 * @param  array  $atts    The attributes used to invoke this shortcode.
+		 * @param  string $tag     This shortcode tag.
+		 * @return string          This shortcode's filtered content.
 		 */
-		return \apply_filters( 'syllables/shortcode/render', $output, $atts, $this->tag );
+		return \apply_filters( 'syllables/shortcode/render', $content, $atts, $this->tag );
 	}
 }

@@ -28,12 +28,21 @@ class Shortcode_Test extends TestCase {
 	private $callback;
 
 	/**
+	 * Whether the callback was invoked.
+	 * @var boolean
+	 */
+	private $callback_invoked = false;
+
+	/**
 	 * Setup a test method.
 	 */
 	public function setUp() {
 		parent::setUp();
 
+		$this->callback_invoked = false;
+
 		$this->callback = function ( $atts ) {
+			$this->callback_invoked = true;
 			return $atts['expected'];
 		};
 
@@ -46,6 +55,7 @@ class Shortcode_Test extends TestCase {
 	public function tearDown() {
 		parent::tearDown();
 
+		$this->callback  = null;
 		$this->shortcode = null;
 	}
 
@@ -142,19 +152,18 @@ class Shortcode_Test extends TestCase {
 
 		\WP_Mock::wpFunction( 'apply_filters', array(
 			'times'  => 1,
-			'args'   => array( 'syllables/shortcode/render', $atts['expected'], $atts, $this->tag ),
+			'args'   => array( "syllables/shortcode/render", $atts['expected'], $atts, $this->tag ),
 			'return' => $atts['expected'],
 		) );
 
 		$actual = $this->shortcode->render( $atts );
 
-		// TODO: Fix failure.
-		// TODO: Check that callback is called.
-
+		$this->assertTrue( $this->callback_invoked, 'Shortcode callback was invoked.' );
 		$this->assertEquals( $actual, $atts['expected'], 'Shortcode renderer returns the callback output.' );
 
 		$this->markTestIncomplete();
 
+		// TODO: Fix failure.
 		// $this->assertConditionsMet();
 	}
 
