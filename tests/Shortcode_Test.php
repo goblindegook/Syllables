@@ -108,7 +108,7 @@ class Shortcode_Test extends TestCase {
 	}
 
 	/**
-	 * @covers ::remove
+	 * @covers ::replace
 	 */
 	public function test_replace() {
 
