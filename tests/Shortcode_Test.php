@@ -34,7 +34,7 @@ class Shortcode_Test extends TestCase {
 		parent::setUp();
 
 		$this->callback = function ( $atts ) {
-			return $atts['rendered'];
+			return $atts['expected'];
 		};
 
 		$this->shortcode = new \Syllables\Shortcode( $this->tag, $this->callback );
@@ -138,21 +138,24 @@ class Shortcode_Test extends TestCase {
 	 */
 	public function test_render() {
 
-		$this->markTestIncomplete();
-
-		$atts = array( 'rendered' => 'test' );
+		$atts = array( 'expected' => 'test' );
 
 		\WP_Mock::wpFunction( 'apply_filters', array(
-			'times' => 1,
-			'args'  => array( 'syllables/shortcode/render', $atts['rendered'], $atts, $this->tag ),
+			'times'  => 1,
+			'args'   => array( 'syllables/shortcode/render', $atts['expected'], $atts, $this->tag ),
+			'return' => $atts['expected'],
 		) );
 
-		$this->shortcode->render( $atts );
+		$actual = $this->shortcode->render( $atts );
 
 		// TODO: Fix failure.
 		// TODO: Check that callback is called.
 
-		$this->assertConditionsMet();
+		$this->assertEquals( $actual, $atts['expected'], 'Shortcode renderer returns the callback output.' );
+
+		$this->markTestIncomplete();
+
+		// $this->assertConditionsMet();
 	}
 
 }
