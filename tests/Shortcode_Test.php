@@ -108,6 +108,32 @@ class Shortcode_Test extends TestCase {
 	}
 
 	/**
+	 * @covers ::remove
+	 */
+	public function test_replace() {
+
+		\WP_Mock::wpFunction( 'remove_shortcode', array(
+			'times' => 1,
+			'args'  => array( $this->tag ),
+		) );
+
+		\WP_Mock::wpFunction( 'shortcode_exists', array(
+			'times'  => 1,
+			'args'   => array( $this->tag ),
+			'return' => false,
+		) );
+
+		\WP_Mock::wpFunction( 'add_shortcode', array(
+			'times' => 1,
+			'args'  => array( $this->tag, array( $this->shortcode, 'render' ) ),
+		) );
+
+		$this->shortcode->replace();
+
+		$this->assertConditionsMet();
+	}
+
+	/**
 	 * @covers ::render
 	 */
 	public function test_render() {

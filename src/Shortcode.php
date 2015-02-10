@@ -62,6 +62,14 @@ class Shortcode {
 	}
 
 	/**
+	 * Replaces the callback for this shortcode tag.
+	 */
+	public function replace() {
+		$this->remove();
+		$this->add();
+	}
+
+	/**
 	 * Renders the hooked shortcode.
 	 *
 	 * @param  array  $atts The shortcode's attributes.
