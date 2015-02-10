@@ -20,12 +20,11 @@ class Taxonomy_Test extends TestCase {
 	 * @dataProvider filter_provider
 	 */
 	public function test_filter( $query, $taxonomy, $slug, $expected ) {
+		$this->queried_object->taxonomy = $taxonomy;
+		$this->queried_object->slug     = $slug;
 		$this->_mockQuery( $query );
 
 		$loader = new Loader\Taxonomy( $this->base_path, array( $taxonomy ) );
-
-		$this->queried_object->taxonomy = $taxonomy;
-		$this->queried_object->slug     = $slug;
 
 		if ( empty( $expected ) ) {
 			$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
@@ -59,11 +58,10 @@ class Taxonomy_Test extends TestCase {
 	 * @covers \Syllables\Template\Loader::filter
 	 */
 	public function test_filter_query_no_match() {
+		$this->queried_object->taxonomy = 'different-tax';
 		$this->_mockQuery( static::QUERY_TAXONOMY );
 
 		$loader = new Loader\Taxonomy( $this->base_path, array( 'tax' ) );
-
-		$this->queried_object->taxonomy = 'different-tax';
 
 		$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
 			'Does not change the template if taxonomy does not match.' );
@@ -73,12 +71,11 @@ class Taxonomy_Test extends TestCase {
 	 * @covers \Syllables\Template\Loader::filter
 	 */
 	public function test_filter_template_not_found() {
+		$this->queried_object->taxonomy = 'file_not_found';
+		$this->queried_object->slug     = 'term';
 		$this->_mockQuery( static::QUERY_TAXONOMY );
 
 		$loader = new Loader\Taxonomy( $this->base_path, array( 'file_not_found' ) );
-
-		$this->queried_object->taxonomy = 'file_not_found';
-		$this->queried_object->slug     = 'term';
 
 		$this->assertLoaderFilterDoesNotChangeTemplate( $loader,
 			'Does not change the template if the template file is not found.' );

@@ -51,7 +51,7 @@ class Taxonomy extends \Syllables\Template\Loader {
 	 * @codeCoverageIgnore
 	 */
 	protected function _prepare_filter() {
-		$term           = \get_queried_object();
+		$term = \get_queried_object();
 
 		if ( ! empty( $term->slug ) && ! empty( $term->taxonomy ) ) {
 			$this->term     = $term->slug;

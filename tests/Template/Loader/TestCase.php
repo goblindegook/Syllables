@@ -84,7 +84,7 @@ class TestCase extends \WP_Mock\Tools\TestCase {
 	 * @param integer|null $query Query type.
 	 */
 	protected function _mockQuery( $query = null ) {
-		$this->_mockQueryFunctionReturns( array(
+		$this->_mockFunctionReturns( array(
 			'get_queried_object'   => $this->queried_object,
 			'get_post_type_object' => $this->queried_object->post_type,
 			'is_category'          => $query === static::QUERY_CATEGORY,
@@ -101,7 +101,7 @@ class TestCase extends \WP_Mock\Tools\TestCase {
 	 * @param  array  $functions Array containing the function names to mock as keys
 	 *                           and their returns as values.
 	 */
-	protected function _mockQueryFunctionReturns( $functions ) {
+	private function _mockFunctionReturns( $functions ) {
 		foreach ( $functions as $function => $return ) {
 			\WP_Mock::wpFunction( $function, array( 'return' => $return ) );
 		}
