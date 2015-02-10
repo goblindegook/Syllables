@@ -43,7 +43,7 @@ class Shortcode_Test extends TestCase {
 
 		$this->callback = function ( $atts ) {
 			$this->callback_invoked = true;
-			return $atts['expected'];
+			return $atts['test'];
 		};
 
 		$this->shortcode = new \Syllables\Shortcode( $this->tag, $this->callback );
@@ -77,7 +77,7 @@ class Shortcode_Test extends TestCase {
 
 		$this->shortcode->add();
 
-		$this->assertConditionsMet();
+		$this->assertConditionsMet( 'Add a shortcode hook.' );
 	}
 
 	/**
@@ -99,7 +99,7 @@ class Shortcode_Test extends TestCase {
 
 		$this->shortcode->add();
 
-		$this->assertConditionsMet();
+		$this->assertConditionsMet( 'Throw an exception when re-adding a shortcode hook.' );
 	}
 
 	/**
@@ -114,7 +114,7 @@ class Shortcode_Test extends TestCase {
 
 		$this->shortcode->remove();
 
-		$this->assertConditionsMet();
+		$this->assertConditionsMet( 'Remove a shortcode hook.' );
 	}
 
 	/**
@@ -140,7 +140,7 @@ class Shortcode_Test extends TestCase {
 
 		$this->shortcode->replace();
 
-		$this->assertConditionsMet();
+		$this->assertConditionsMet( 'Remove and re-add a shortcode hook.' );
 	}
 
 	/**
@@ -148,23 +148,24 @@ class Shortcode_Test extends TestCase {
 	 */
 	public function test_render() {
 
-		$atts = array( 'expected' => 'test' );
-
-		\WP_Mock::wpFunction( 'apply_filters', array(
-			'times'  => 1,
-			'args'   => array( "syllables/shortcode/render", $atts['expected'], $atts, $this->tag ),
-			'return' => $atts['expected'],
-		) );
+		$atts = array( 'test' => 'expected' );
 
 		$actual = $this->shortcode->render( $atts );
 
-		$this->assertTrue( $this->callback_invoked, 'Shortcode callback was invoked.' );
-		$this->assertEquals( $actual, $atts['expected'], 'Shortcode renderer returns the callback output.' );
+		$this->assertTrue( $this->callback_invoked,
+			'Shortcode callback was invoked.' );
 
-		$this->markTestIncomplete();
+		$this->assertEquals( $actual, $atts['test'],
+			'Shortcode renderer returns the callback output.' );
 
-		// TODO: Fix failure.
-		// $this->assertConditionsMet();
+		\WP_Mock::onFilter( 'syllables/shortcode/render' )
+			->with( $atts['test'], $atts, $this->tag )
+			->reply( 'filtered' );
+
+		$filtered = $this->shortcode->render( $atts );
+
+		$this->assertEquals( $filtered, 'filtered',
+			'Shortcode renderer filters the callback output.' );
 	}
 
 }
