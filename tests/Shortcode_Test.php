@@ -28,21 +28,12 @@ class Shortcode_Test extends TestCase {
 	private $callback;
 
 	/**
-	 * Whether the callback was invoked.
-	 * @var boolean
-	 */
-	private $callback_invoked = false;
-
-	/**
 	 * Setup a test method.
 	 */
 	public function setUp() {
 		parent::setUp();
 
-		$this->callback_invoked = false;
-
 		$this->callback = function ( $atts ) {
-			$this->callback_invoked = true;
 			return $atts['test'];
 		};
 
@@ -151,9 +142,6 @@ class Shortcode_Test extends TestCase {
 		$atts = array( 'test' => 'expected' );
 
 		$actual = $this->shortcode->render( $atts );
-
-		$this->assertTrue( $this->callback_invoked,
-			'Shortcode callback was invoked.' );
 
 		$this->assertEquals( $actual, $atts['test'],
 			'Shortcode renderer returns the callback output.' );
