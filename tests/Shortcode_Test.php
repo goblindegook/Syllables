@@ -3,7 +3,6 @@
 namespace Syllables\Tests;
 
 use WP_Mock\Tools\TestCase;
-use Syllables;
 
 /**
  * @coversDefaultClass \Syllables\Shortcode
@@ -12,7 +11,7 @@ class Shortcode_Test extends TestCase {
 
 	/**
 	 * Shortcode object.
-	 * @var Shortcode
+	 * @var \Syllables\Shortcode
 	 */
 	private $shortcode;
 
@@ -29,22 +28,16 @@ class Shortcode_Test extends TestCase {
 	private $callback;
 
 	/**
-	 * Shortcode's output.
-	 * @var string
-	 */
-	private $output = 'Test.';
-
-	/**
 	 * Setup a test method.
 	 */
 	public function setUp() {
 		parent::setUp();
 
 		$this->callback = function ( $atts ) {
-			return $this->output;
+			return $atts['rendered'];
 		};
 
-		$this->shortcode = new Syllables\Shortcode( $this->tag, $this->callback );
+		$this->shortcode = new \Syllables\Shortcode( $this->tag, $this->callback );
 	}
 
 	/**
@@ -121,11 +114,11 @@ class Shortcode_Test extends TestCase {
 
 		$this->markTestIncomplete();
 
-		$atts = array( 'key' => 'value' );
+		$atts = array( 'rendered' => 'test' );
 
 		\WP_Mock::wpFunction( 'apply_filters', array(
 			'times' => 1,
-			'args'  => array( 'syllables/shortcode/render', $this->output, $atts, $this->tag ),
+			'args'  => array( 'syllables/shortcode/render', $atts['rendered'], $atts, $this->tag ),
 		) );
 
 		$this->shortcode->render( $atts );
