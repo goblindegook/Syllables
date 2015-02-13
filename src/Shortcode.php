@@ -89,7 +89,9 @@ class Shortcode {
 	 */
 	public function render( $atts, $content = null ) {
 
-		$content = call_user_func( $this->callback, $atts, $content );
+		if ( \is_callable( $this->callback ) ) {
+			$content = call_user_func( $this->callback, $atts, $content );
+		}
 
 		/**
 		 * Filters the shortcode content.
