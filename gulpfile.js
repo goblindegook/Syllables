@@ -63,7 +63,7 @@ gulp.task('apigen', function () {
  * gulp watch
  */
 gulp.task('watch', function () {
-  gulp.watch(['src/**/*.php', 'tests/**/*.php'],
+  gulp.watch(['src/**/*.php', 'tests/**/*.php', 'vendor/**/*.php'],
     ['test']);
 
   gulp.watch('composer.json',

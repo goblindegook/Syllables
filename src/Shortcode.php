@@ -34,9 +34,18 @@ class Shortcode {
 	 *
 	 * @codeCoverageIgnore
 	 */
-	public function __construct( $tag, $callback ) {
+	public function __construct( $tag, $callback = null ) {
 		$this->tag      = $tag;
 		$this->callback = $callback;
+	}
+
+	/**
+	 * Gets the shortcode tag name.
+	 *
+	 * @return string Shortcode tag.
+	 */
+	public function get_tag() {
+		return $this->tag;
 	}
 
 	/**
@@ -72,13 +81,15 @@ class Shortcode {
 	/**
 	 * Renders the hooked shortcode.
 	 *
-	 * @param  array  $atts The shortcode's attributes.
-	 * @return string       The rendered shortcode.
+	 * @param  array  $atts    The shortcode's attributes.
+	 * @param  string $content Content enclosed in shortcode.
+	 * @return string          The rendered shortcode.
 	 *
 	 * @uses \apply_filters()
 	 */
-	public function render( $atts ) {
-		$content = call_user_func( $this->callback, $atts );
+	public function render( $atts, $content = null ) {
+
+		$content = call_user_func( $this->callback, $atts, $content );
 
 		/**
 		 * Filters the shortcode content.

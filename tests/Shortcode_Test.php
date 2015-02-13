@@ -33,7 +33,10 @@ class Shortcode_Test extends TestCase {
 	public function setUp() {
 		parent::setUp();
 
-		$this->callback = function ( $atts ) {
+		$this->callback = function ( $atts, $content = '' ) {
+			if ( ! empty( $content ) ) {
+				return $atts['test'] . $content;
+			}
 			return $atts['test'];
 		};
 
@@ -48,6 +51,11 @@ class Shortcode_Test extends TestCase {
 
 		$this->callback  = null;
 		$this->shortcode = null;
+	}
+
+	public function test_get_add() {
+		$this->assertEquals( $this->shortcode->get_tag(), $this->tag,
+			'Get the tag name.' );
 	}
 
 	/**
@@ -138,21 +146,37 @@ class Shortcode_Test extends TestCase {
 	 * @covers ::render
 	 */
 	public function test_render() {
-
 		$atts = array( 'test' => 'expected' );
 
-		$actual = $this->shortcode->render( $atts );
+		$expected_conten = $atts['test'];
+		$actual_content  = $this->shortcode->render( $atts );
 
-		$this->assertEquals( $actual, $atts['test'],
+		$this->assertEquals( $actual_content, $atts['test'],
 			'Shortcode renderer returns the callback output.' );
 
+		$expected_content = $atts['test'] . 'test';
+		$actual_content   = $this->shortcode->render( $atts, 'test' );
+
+		$this->assertEquals( $actual_content, $expected_content,
+			'Shortcode renderer returns the callback output with content.' );
+	}
+
+	/**
+	 * @covers ::render
+	 */
+	public function test_render_filter() {
+		$atts = array( 'test' => 'expected' );
+
+		$unfiltered_content = $atts['test'] . 'test';
+		$expected_content   = 'filtered';
+
 		\WP_Mock::onFilter( 'syllables/shortcode/render' )
-			->with( $atts['test'], $atts, $this->tag )
-			->reply( 'filtered' );
+			->with( $unfiltered_content, $atts, $this->tag )
+			->reply( $expected_content );
 
-		$filtered = $this->shortcode->render( $atts );
+		$actual_content = $this->shortcode->render( $atts, 'test' );
 
-		$this->assertEquals( $filtered, 'filtered',
+		$this->assertEquals( $actual_content, $expected_content,
 			'Shortcode renderer filters the callback output.' );
 	}
 
