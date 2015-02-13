@@ -53,7 +53,10 @@ class Shortcode_Test extends TestCase {
 		$this->shortcode = null;
 	}
 
-	public function test_get_add() {
+	/**
+	 * @covers ::get_tag
+	 */
+	public function test_get_tag() {
 		$this->assertEquals( $this->shortcode->get_tag(), $this->tag,
 			'Get the tag name.' );
 	}
