@@ -82,15 +82,20 @@ class Shortcode {
 	 * Renders the hooked shortcode.
 	 *
 	 * @param  array  $atts    The shortcode's attributes.
-	 * @param  string $content Content enclosed in shortcode.
+	 * @param  string $content (Optional) Content enclosed in shortcode.
+	 * @param  string $tag     (Optional) Shortcode tag.
 	 * @return string          The rendered shortcode.
 	 *
 	 * @uses \apply_filters()
 	 */
-	public function render( $atts, $content = null ) {
+	public function render( $atts, $content = null, $tag = null ) {
+
+		if ( empty( $tag ) ) {
+			$tag = $this->tag;
+		}
 
 		if ( \is_callable( $this->callback ) ) {
-			$content = call_user_func( $this->callback, $atts, $content );
+			$content = call_user_func( $this->callback, $atts, $content, $tag );
 		}
 
 		/**
@@ -101,6 +106,6 @@ class Shortcode {
 		 * @param  string $tag     This shortcode tag.
 		 * @return string          This shortcode's filtered content.
 		 */
-		return \apply_filters( 'syllables/shortcode/render', $content, $atts, $this->tag );
+		return \apply_filters( 'syllables/shortcode/render', $content, $atts, $tag );
 	}
 }
