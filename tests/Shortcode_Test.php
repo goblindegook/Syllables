@@ -162,13 +162,6 @@ class Shortcode_Test extends TestCase {
 
 		$this->assertEquals( $actual_content, $expected_content,
 			'Shortcode renderer returns the callback output with content.' );
-	}
-
-	/**
-	 * @covers ::render
-	 */
-	public function test_render_filter() {
-		$atts = array( 'test' => 'expected' );
 
 		$unfiltered_content = $atts['test'] . 'test';
 		$expected_content   = 'filtered';
