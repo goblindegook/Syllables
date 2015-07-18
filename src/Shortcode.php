@@ -29,8 +29,8 @@ class Shortcode {
 	/**
 	 * Shortcode constructor.
 	 *
-	 * @param string   $tag      Shortcode tag.
-	 * @param callable $callback Shortcode callback.
+	 * @param string        $tag      Shortcode tag.
+	 * @param callable|null $callback Shortcode callback.
 	 *
 	 * @codeCoverageIgnore
 	 */
@@ -81,10 +81,10 @@ class Shortcode {
 	/**
 	 * Callback that outputs the shortcode.
 	 *
-	 * @param  array  $atts    The shortcode's attributes.
-	 * @param  string $content (Optional) Content enclosed in shortcode.
-	 * @param  string $tag     (Optional) Shortcode tag.
-	 * @return string          The rendered shortcode.
+	 * @param  array       $atts    The shortcode's attributes.
+	 * @param  string|null $content (Optional) Content enclosed in shortcode.
+	 * @param  string|null $tag     (Optional) Shortcode tag.
+	 * @return string               The rendered shortcode.
 	 *
 	 * @uses \apply_filters()
 	 */
@@ -110,10 +110,10 @@ class Shortcode {
 	/**
 	 * Renders the hooked shortcode.
 	 *
-	 * @param  array  $atts    The shortcode's attributes.
-	 * @param  string $content (Optional) Content enclosed in shortcode.
-	 * @param  string $tag     (Optional) Shortcode tag.
-	 * @return string          The rendered shortcode.
+	 * @param  array       $atts    The shortcode's attributes.
+	 * @param  string|null $content (Optional) Content enclosed in shortcode.
+	 * @param  string|null $tag     (Optional) Shortcode tag.
+	 * @return string               The rendered shortcode.
 	 *
 	 * @uses \apply_filters()
 	 */
