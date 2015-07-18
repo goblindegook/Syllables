@@ -37,7 +37,6 @@ $ cd /path/to/wp-content/mu-plugins/syllables
 $ cp syllables-mu.php ..
 ```
 
-
 ## Development builds
 
 Syllables uses Gulp to automate builds through the following tasks:

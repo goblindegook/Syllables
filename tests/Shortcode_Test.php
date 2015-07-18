@@ -74,7 +74,7 @@ class Shortcode_Test extends TestCase {
 
 		\WP_Mock::wpFunction( 'add_shortcode', array(
 			'times' => 1,
-			'args'  => array( $this->tag, array( $this->shortcode, 'render' ) ),
+			'args'  => array( $this->tag, array( $this->shortcode, 'output' ) ),
 		) );
 
 		$this->shortcode->add();
@@ -137,7 +137,7 @@ class Shortcode_Test extends TestCase {
 
 		\WP_Mock::wpFunction( 'add_shortcode', array(
 			'times' => 1,
-			'args'  => array( $this->tag, array( $this->shortcode, 'render' ) ),
+			'args'  => array( $this->tag, array( $this->shortcode, 'output' ) ),
 		) );
 
 		$this->shortcode->replace();
@@ -149,7 +149,8 @@ class Shortcode_Test extends TestCase {
 	 * @covers ::render
 	 */
 	public function test_render() {
-		$atts = array( 'test' => 'expected' );
+		$atts          = array( 'test' => 'expected' );
+		$inner_content = 'test';
 
 		$expected_content = $atts['test'];
 		$actual_content   = $this->shortcode->render( $atts );
@@ -157,23 +158,55 @@ class Shortcode_Test extends TestCase {
 		$this->assertEquals( $actual_content, $expected_content,
 			'Shortcode renderer returns the callback output.' );
 
-		$expected_content = $atts['test'] . 'test';
-		$actual_content   = $this->shortcode->render( $atts, 'test' );
+		$expected_content = $atts['test'] . $inner_content;
+		$actual_content   = $this->shortcode->render( $atts, $inner_content );
 
 		$this->assertEquals( $actual_content, $expected_content,
 			'Shortcode renderer returns the callback output with content.' );
 
-		$unfiltered_content = $atts['test'] . 'test';
+		$unfiltered_content = $atts['test'] . $inner_content;
 		$expected_content   = 'filtered';
 
 		\WP_Mock::onFilter( 'syllables/shortcode/render' )
 			->with( $unfiltered_content, $atts, $this->tag )
 			->reply( $expected_content );
 
-		$actual_content = $this->shortcode->render( $atts, 'test' );
+		$actual_content = $this->shortcode->render( $atts, $inner_content, $this->tag );
 
 		$this->assertEquals( $actual_content, $expected_content,
 			'Shortcode renderer filters the callback output.' );
+	}
+
+	/**
+	 * @covers ::output
+	 */
+	public function test_output() {
+		$atts          = array( 'test' => 'expected' );
+		$inner_content = 'test';
+
+		$expected_content = $atts['test'];
+		$actual_content   = $this->shortcode->output( $atts );
+
+		$this->assertEquals( $actual_content, $expected_content,
+			'Shortcode output wrapper returns the callback output.' );
+
+		$expected_content = $atts['test'] . $inner_content;
+		$actual_content   = $this->shortcode->output( $atts, $inner_content );
+
+		$this->assertEquals( $actual_content, $expected_content,
+			'Shortcode output wrapper returns the callback output with content.' );
+
+		$unfiltered_content = $atts['test'] . $inner_content;
+		$expected_content   = 'filtered';
+
+		\WP_Mock::onFilter( 'syllables/shortcode/output' )
+			->with( $unfiltered_content, $atts, $inner_content, $this->tag )
+			->reply( $expected_content );
+
+		$actual_content = $this->shortcode->output( $atts, $inner_content, $this->tag );
+
+		$this->assertEquals( $actual_content, $expected_content,
+			'Shortcode output wrapper filters the callback output.' );
 	}
 
 }

@@ -58,7 +58,7 @@ class Shortcode {
 			throw new \Exception( "Shortcode `{$this->tag}` exists." );
 		}
 
-		\add_shortcode( $this->tag, array( $this, 'render' ) );
+		\add_shortcode( $this->tag, array( $this, 'output' ) );
 	}
 
 	/**
@@ -79,6 +79,35 @@ class Shortcode {
 	}
 
 	/**
+	 * Callback that outputs the shortcode.
+	 *
+	 * @param  array  $atts    The shortcode's attributes.
+	 * @param  string $content (Optional) Content enclosed in shortcode.
+	 * @param  string $tag     (Optional) Shortcode tag.
+	 * @return string          The rendered shortcode.
+	 *
+	 * @uses \apply_filters()
+	 */
+	final public function output( $atts, $content = null, $tag = null ) {
+		if ( empty( $tag ) ) {
+			$tag = $this->get_tag();
+		}
+
+		$output = $this->render( $atts, $content, $tag );
+
+		/**
+		 * Filters the shortcode content.
+		 *
+		 * @param  string $output  This shortcode's rendered content.
+		 * @param  array  $atts    The attributes used to invoke this shortcode.
+		 * @param  string $content This shortcode's raw inner content.
+		 * @param  string $tag     This shortcode tag.
+		 * @return string          This shortcode's filtered content.
+		 */
+		return \apply_filters( 'syllables/shortcode/output', $output, $atts, $content, $tag );
+	}
+
+	/**
 	 * Renders the hooked shortcode.
 	 *
 	 * @param  array  $atts    The shortcode's attributes.
@@ -90,11 +119,7 @@ class Shortcode {
 	 */
 	public function render( $atts, $content = null, $tag = null ) {
 
-		if ( empty( $tag ) ) {
-			$tag = $this->tag;
-		}
-
-		if ( \is_callable( $this->callback ) ) {
+		if ( is_callable( $this->callback ) ) {
 			$content = call_user_func( $this->callback, $atts, $content, $tag );
 		}
 
@@ -105,6 +130,8 @@ class Shortcode {
 		 * @param  array  $atts    The attributes used to invoke this shortcode.
 		 * @param  string $tag     This shortcode tag.
 		 * @return string          This shortcode's filtered content.
+		 *
+		 * @deprecated since 0.3.2. Use the `syllables/shortcode/output` filter hook.
 		 */
 		return \apply_filters( 'syllables/shortcode/render', $content, $atts, $tag );
 	}
