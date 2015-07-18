@@ -2,8 +2,10 @@
 
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased][unreleased]
+## [0.3.2] - July 18, 2015
+- **[Added]** Shortcode `syllables/shortcode/output` filter.
 - **[Fixed]** Allow shortcode callback to receive the calling tag name as a parameter.
+- **[Deprecated]** Shortcode `syllables/shortcode/render` filter.
 
 ## [0.3.1] – February 13, 2015
 - **[Added]** Shortcode tag name accessor.
@@ -11,7 +13,7 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [0.3.0] – February 10, 2015
 - **[Changed]** Package installs as a WordPress plugin by default.
-- **[Added]** Shortcode wrapper and output filter.
+- **[Added]** Shortcode wrapper and `syllables/shortcode/render` output filter.
 - **[Added]** Support for `composer/installers`.
 
 ## [0.2.0] – January 22, 2015
